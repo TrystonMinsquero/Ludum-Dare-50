@@ -238,7 +238,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.79
+  m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4748293522208193717, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 084e3fe17740f22498559e7c5edcc0b0, type: 3}
     - target: {fileID: 4748293522208193718, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_Name
       value: Player
