@@ -20,11 +20,15 @@ public class MeleeEnemy : Enemy
     {
         if (_setter.target != null)
         {
-            Vector3 attackPoint = ((_setter.target.position - transform.position).normalized * attackRange);
-            Collider2D collision = Physics2D.OverlapCircle(transform.position + attackPoint, attackRadius, LayerMask.NameToLayer("Player"));
-        
-            if(collision.TryGetComponent<Player>(out var player))
-                player.TakeDamage(damageAmount);
+            Vector3 attackPoint = (_setter.target.position - transform.position).normalized * attackRange;
+            Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position + attackPoint, attackRadius);
+            
+            foreach(Collider2D collision in collisions)
+                if (collision.TryGetComponent<Player>(out var player))
+                {
+                    player.TakeDamage(damageAmount);
+                    break;
+                }
         }
         yield return null;
         EndAttack();
