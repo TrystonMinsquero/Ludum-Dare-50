@@ -52,17 +52,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // MoveInput = _controls.Gameplay.Movement.ReadValue<Vector2>();
-        // ThrowInput = _controls.Gameplay.Throw.triggered;
-        // DashInput = _controls.Gameplay.Dash.triggered;
-        // ActivateInput = _controls.Gameplay.Activate.triggered;
-        // Debug.Log(mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) );
         if (_playerInput.currentControlScheme == "Keyboard & Mouse")
         {
             Vector2 mousePos = mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
             LookInput =  (mousePos - (Vector2.one * .5f)).normalized;
         }
-           
     }
 
     private void OnEnable()
