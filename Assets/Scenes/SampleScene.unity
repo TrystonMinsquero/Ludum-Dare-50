@@ -238,7 +238,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2.79
+  m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -495,6 +495,26 @@ PrefabInstance:
     - target: {fileID: 4748293522208193718, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985763071577311938, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.301
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985763071577311938, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.249
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985763071577311938, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985763071577311938, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985763071577311938, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
