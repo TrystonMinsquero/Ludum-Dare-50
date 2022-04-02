@@ -33,7 +33,7 @@ public class Door : MonoBehaviour
         open = true;
     }
 
-    private void Start()
+    private void Awake()
     {
         _turnOffOnOpen = new Behaviour[1];
         _turnOffOnOpen[0] = GetComponent<TilemapCollider2D>();
