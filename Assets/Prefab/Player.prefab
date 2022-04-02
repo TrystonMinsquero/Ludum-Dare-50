@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 9077061603616975393}
+  weaponSpot: {fileID: 2043623018420626163}
   throwSpeed: 25
   rotateSpeed: 25
 --- !u!114 &4748293522208193720
