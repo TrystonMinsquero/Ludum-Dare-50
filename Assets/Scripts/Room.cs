@@ -40,7 +40,6 @@ public class Room : MonoBehaviour
     public void Start()
     {
         _lights = GetComponentsInChildren<Light2D>();
-        Debug.Log(_lights.Length);
         
         if(completed)
             CompleteRoom();
