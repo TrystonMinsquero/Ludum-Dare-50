@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 MoveInput { get; private set; }
 
-    public Vector3 LookPosition { get; private set; }
+    public Vector2 LookInput { get; private set; }
 
     public bool ThrowInput { get; private set; }
     public bool DashInput { get; private set; }
@@ -35,10 +35,10 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerInput.currentControlScheme == "Keyboard & Mouse")
         {
-            LookPosition = mainCam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            LookInput = (mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
         }
         else
-            LookPosition = ctx.ReadValue<Vector2>();
+            LookInput = ctx.ReadValue<Vector2>();
     }
     public void Throw(InputAction.CallbackContext ctx) {ThrowInput = ctx.performed;}
     public void Dash(InputAction.CallbackContext ctx) {DashInput = ctx.performed;}
@@ -51,9 +51,13 @@ public class PlayerController : MonoBehaviour
         // ThrowInput = _controls.Gameplay.Throw.triggered;
         // DashInput = _controls.Gameplay.Dash.triggered;
         // ActivateInput = _controls.Gameplay.Activate.triggered;
-        
-        if(_playerInput.currentControlScheme == "Keyboard & Mouse")
-            LookPosition = mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
+        // Debug.Log(mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) );
+        if (_playerInput.currentControlScheme == "Keyboard & Mouse")
+        {
+            Vector2 mousePos = mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
+            LookInput =  (mousePos - (Vector2.one * .5f)).normalized;
+        }
+           
     }
 
     private void OnEnable()

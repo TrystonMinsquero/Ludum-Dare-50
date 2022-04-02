@@ -7,11 +7,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     
     [Header("Dash Settings")]
-    [Tooltip("The maximum time the player can be dashing (in case they get stuck)")]
-    public float maxDashTime;
     public float dashSpeed;
     public float targetDashDistance;
-    
+    public float dashTimeBuffer = .3f; // Estimated value for timeout
+
 
     private PlayerController _controller;
     private Rigidbody2D _rb;
@@ -22,32 +21,49 @@ public class PlayerMovement : MonoBehaviour
     {
         _controller = GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody2D>();
+        lookDirection = Vector2.down;
     }
 
     private IEnumerator Dash()
     {
+        // reset values
         _rb.drag = 0;
         isDashing = true;
         Vector3 startPos = transform.position;
-        //Debug.Log(lookDirection);
+        Debug.Log($"lookDirection: {lookDirection}");
+        Debug.Log($"lookDirection normalized: {lookDirection.normalized}");
         _rb.velocity = lookDirection.normalized * dashSpeed; //initial velocity added
-        float maxDashTime = (targetDashDistance / _rb.velocity.magnitude) + .3f; //Estimated
+        float maxDashTime = (_rb.velocity.magnitude / targetDashDistance ) + dashTimeBuffer; //Estimated
         float timeStarted = Time.time;
         while ((transform.position - startPos).magnitude < targetDashDistance && Time.time - timeStarted < maxDashTime)
             yield return null;
         _rb.velocity = Vector2.zero;
         isDashing = false;
-        //Debug.Log("Actual Time: " + (Time.time - timeStarted));
-        //Debug.Log("Estimated Time: " + maxDashTime);
+        
+        // Use this debugging for testing
+        Debug.Log("Actual Time: " + (Time.time - timeStarted));
+        Debug.Log("Estimated Time: " + maxDashTime);
     }
     private void FixedUpdate()
     {
+        if(isDashing)
+            return;
+
         if (!isDashing)
         {
-            lookDirection = _controller.MoveInput;
+            // move
             _rb.velocity = _controller.MoveInput * moveSpeed;
+            if(_rb.velocity.magnitude > 0.3f)
+                lookDirection = _controller.MoveInput;
 
-
+            // look
+            if (_controller.LookInput.magnitude > .1f)
+                lookDirection = _controller.LookInput;
+            
+            // dash
+            if(_controller.DashInput)
+                StartCoroutine(Dash());
+            
             //Vector2 lookDir = (_controller.LookPosition - transform.position).normalized;
             //transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDir.y, lookDir.x) + 90);
             //_rb.velocity = Vector2.zero;
