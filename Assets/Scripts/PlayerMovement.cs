@@ -1,5 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
+public enum Direction
+{
+    UP,
+    UP_RIGHT,
+    RIGHT,
+    DOWN_RIGHT,
+    DOWN,
+    DOWN_LEFT,
+    LEFT,
+    UP_LEFT
+}
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -72,6 +86,37 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public Direction GetDirection()
+    {
+        float mid = Mathf.Sin(Mathf.Deg2Rad * 30);
+        Vector2[] directions = new Vector2[8];
+        directions[(int) Direction.UP] = Vector2.up;
+        directions[(int) Direction.UP_RIGHT] = new Vector2(mid, mid);
+        directions[(int) Direction.RIGHT] = Vector2.up;
+        directions[(int) Direction.DOWN_RIGHT] = new Vector2(mid, -mid);
+        directions[(int) Direction.DOWN] = Vector2.up;
+        directions[(int) Direction.DOWN_LEFT] = new Vector2(-mid, -mid);
+        directions[(int) Direction.LEFT] = Vector2.up;
+        directions[(int) Direction.UP_LEFT] = new Vector2(-mid, mid);
+
+        float closestVal = Mathf.Infinity;
+        float closestIndex = -1;
+        Vector2 v1 = lookDirection.normalized;
+        for (int i = 0; i < directions.Length; i++)
+        {
+            Vector2 v2 = directions[i].normalized;
+            float val = v1.magnitude * v2.magnitude * Mathf.Cos(Vector2.Dot(v1, v2));
+            val = Mathf.Abs(1 - val);
+            if (val < closestVal)
+            {
+                closestIndex = i;
+                closestVal = val;
+            }
+        }
+
+        return (Direction) (closestIndex);
+    }
+
     private void Update()
     {
         if (!isDashing)
@@ -89,5 +134,10 @@ public class PlayerMovement : MonoBehaviour
             StopCoroutine(Dash());
             EndDash();
         }
+    }
+
+    public bool IsDashing()
+    {
+        return isDashing;
     }
 }

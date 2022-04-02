@@ -2,22 +2,12 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public enum Direction
-{
-    UP,
-    UP_RIGHT,
-    RIGHT,
-    DOWN_RIGHT,
-    DOWN,
-    DOWN_LEFT,
-    LEFT,
-    UP_LEFT
-}
 
 public class PlayerVisuals : MonoBehaviour
 {
     private PlayerController _controller;
     private SpriteRenderer _sr;
+
     public float Scale
     {
         get { return transform.localScale.y; }
@@ -47,4 +37,14 @@ public class PlayerVisuals : MonoBehaviour
         else if (_controller.LookInput.x < 0 && _sr.flipX == false)
             _sr.flipX = true;
     }
+
+    public void SetAnimation()
+    {
+        var pm = GetComponent<PlayerMovement>();
+        Direction dir = pm.GetDirection();
+        string stateName = "";
+        if()
+
+    }
+
 }

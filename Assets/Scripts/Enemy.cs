@@ -11,8 +11,19 @@ public abstract class Enemy : MonoBehaviour
     public float attackInterval = .1f;
     public float chargeUpTime;
     public bool canMoveWhileCharging;
+    public float moveSpeedInit = 3f;
 
-    public float moveSpeed = 3f;
+    public float moveSpeed
+    {
+        get
+        {
+            return moveSpeed;
+        }
+        set
+        {
+            _aiPath.maxSpeed = value;
+        }
+    }
     protected AIDestinationSetter _setter;
     protected AIPath _aiPath;
     protected bool chargingUp;
@@ -53,7 +64,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _setter.target = target;
     }
-    
+
 
     protected abstract IEnumerator Attack();
 
