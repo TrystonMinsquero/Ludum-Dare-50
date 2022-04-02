@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -18,6 +19,13 @@ public class Room : MonoBehaviour
             door.Close();
         
         SetLightsActive(true);
+    }
+
+    private void Update()
+    {
+        // if(!completed)
+        //     if(enemies == null || enemies.Count <= 0)
+        //         CompleteRoom();
     }
 
     public void CompleteRoom()
