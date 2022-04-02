@@ -13,16 +13,23 @@ public class PlayerMovement : MonoBehaviour
         _controller = GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody2D>();
     }
+
+    private void Dash()
+    {
+        
+    }
     
     
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!isDashing)
         {
             Vector2 direction = _controller.MoveInput;
-            _rb.position = _rb.position + moveSpeed * direction * Time.fixedDeltaTime;
+            _rb.position = _rb.position + moveSpeed * direction;
             //_rb.velocity = Vector2.zero;
         }
     }
+    
+    
 }
