@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         EndDash();
         // Use this debugging for testing
-        Debug.Log("Actual Time: " + (Time.time - timeStarted));
-        Debug.Log("Estimated Time: " + maxDashTime);
+        // Debug.Log("Actual Time: " + (Time.time - timeStarted));
+        // Debug.Log("Estimated Time: " + maxDashTime);
     }
 
     private void EndDash()

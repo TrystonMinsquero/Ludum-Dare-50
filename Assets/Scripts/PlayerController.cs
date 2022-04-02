@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerInput.currentControlScheme == "Keyboard & Mouse")
         {
-            LookInput = (mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
+            Vector2 mousePos = mainCam.ScreenToViewportPoint(Mouse.current.position.ReadValue());
+            LookInput =  (mousePos - (Vector2.one * .5f)).normalized;
         }
         else
             LookInput = ctx.ReadValue<Vector2>();
