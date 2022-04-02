@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 LookInput { get; private set; }
 
-    public bool ThrowInput { get; private set; }
     public bool DashInput { get; private set; }
+    public bool ThrowInput { get; private set; }
     public bool ActivateInput { get; private set; }
 
     private Controls _controls;
@@ -40,9 +40,13 @@ public class PlayerController : MonoBehaviour
         else
             LookInput = ctx.ReadValue<Vector2>();
     }
-    public void Throw(InputAction.CallbackContext ctx) {ThrowInput = ctx.performed;}
-    public void Dash(InputAction.CallbackContext ctx) {DashInput = ctx.performed;}
-    public void Activate(InputAction.CallbackContext ctx) {ActivateInput = ctx.performed;}
+
+    public void Dash(InputAction.CallbackContext ctx)
+    {
+        DashInput = ctx.performed;
+    }
+    public void Throw(InputAction.CallbackContext ctx) {ThrowInput = ctx.phase == InputActionPhase.Started;}
+    public void Activate(InputAction.CallbackContext ctx) {ActivateInput = ctx.phase == InputActionPhase.Started;}
 
 
     private void Update()

@@ -6,23 +6,25 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f;
-    
-    [Header("Dash Settings")]
+
+    [Header("Dash Settings")] 
+    public float dashDelay = .2f;
     public float dashSpeed;
     public float targetDashDistance;
     public float dashTimeBuffer = 1f; // Estimated value for timeout
-
 
     private PlayerController _controller;
     private Rigidbody2D _rb;
     private bool isDashing;
     private Vector2 lookDirection;
 
+    private float _canDashTime;
     private void Start()
     {
         _controller = GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody2D>();
         lookDirection = Vector2.down;
+        _canDashTime = 0;
     }
 
     private IEnumerator Dash()
@@ -46,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = Vector2.zero;
         isDashing = false;
+        _canDashTime = Time.time + dashDelay;
     }
     
     private void FixedUpdate()
@@ -64,13 +67,20 @@ public class PlayerMovement : MonoBehaviour
             if (_controller.LookInput.magnitude > .1f)
                 lookDirection = _controller.LookInput;
             
-            // dash
-            if(_controller.DashInput)
-                StartCoroutine(Dash());
             
             //Vector2 lookDir = (_controller.LookPosition - transform.position).normalized;
             //transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDir.y, lookDir.x) + 90);
             //_rb.velocity = Vector2.zero;
+        }
+    }
+
+    private void Update()
+    {
+        if (!isDashing)
+        {
+            // dash
+            if(_controller.DashInput && _canDashTime <= Time.time)
+                StartCoroutine(Dash());
         }
     }
 
