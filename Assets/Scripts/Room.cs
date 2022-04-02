@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Room : MonoBehaviour
 {
     public List<Enemy> enemies;
     public Door[] doors;
     public bool completed = false;
-    private Light[] _lights;
+    private Light2D[] _lights;
 
     public void TurnOn()
     {
@@ -32,7 +31,8 @@ public class Room : MonoBehaviour
 
     public void Start()
     {
-        _lights = GetComponentsInChildren<Light>();
+        _lights = GetComponentsInChildren<Light2D>();
+        Debug.Log(_lights.Length);
         
         if(completed)
             CompleteRoom();
@@ -51,7 +51,7 @@ public class Room : MonoBehaviour
 
     private void SetLightsActive(bool enabled)
     {
-        foreach (Light light in _lights)
+        foreach (Light2D light in _lights)
         {
             light.enabled = enabled;
         }
