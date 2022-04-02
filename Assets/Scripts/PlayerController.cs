@@ -45,8 +45,8 @@ public class PlayerController : MonoBehaviour
     {
         DashInput = ctx.performed;
     }
-    public void Throw(InputAction.CallbackContext ctx) {ThrowInput = ctx.phase == InputActionPhase.Started;}
-    public void Activate(InputAction.CallbackContext ctx) {ActivateInput = ctx.phase == InputActionPhase.Started;}
+    public void Throw(InputAction.CallbackContext ctx) {ThrowInput = ctx.performed;}
+    public void Activate(InputAction.CallbackContext ctx) {ActivateInput = ctx.performed;}
 
 
     private void Update()
