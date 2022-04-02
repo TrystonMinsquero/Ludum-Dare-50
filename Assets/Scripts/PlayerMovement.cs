@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash Settings")]
     public float dashSpeed;
     public float targetDashDistance;
-    public float dashTimeBuffer = .3f; // Estimated value for timeout
+    public float dashTimeBuffer = 1f; // Estimated value for timeout
 
 
     private PlayerController _controller;
@@ -31,17 +32,22 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         Vector3 startPos = transform.position;
         _rb.velocity = lookDirection.normalized * dashSpeed; //initial velocity added
-        float maxDashTime = (targetDashDistance / lookDirection.magnitude ) + dashTimeBuffer; //Estimated
+        float maxDashTime = dashTimeBuffer; //Estimated
         float timeStarted = Time.time;
         while ((transform.position - startPos).magnitude < targetDashDistance && Time.time - timeStarted < maxDashTime)
             yield return null;
-        _rb.velocity = Vector2.zero;
-        isDashing = false;
-        
+        EndDash();
         // Use this debugging for testing
         Debug.Log("Actual Time: " + (Time.time - timeStarted));
         Debug.Log("Estimated Time: " + maxDashTime);
     }
+
+    private void EndDash()
+    {
+        _rb.velocity = Vector2.zero;
+        isDashing = false;
+    }
+    
     private void FixedUpdate()
     {
         if(isDashing)
@@ -67,6 +73,13 @@ public class PlayerMovement : MonoBehaviour
             //_rb.velocity = Vector2.zero;
         }
     }
-    
-    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            StopCoroutine(Dash());
+            EndDash();
+        }
+    }
 }
