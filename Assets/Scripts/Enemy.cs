@@ -114,11 +114,11 @@ public abstract class Enemy : MonoBehaviour
         {
             if(embeddedWeapon)
                 player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
-            embeddedWeapon = null;
-            if (player.GetComponent<PlayerMovement>().IsDashing())
+            if (player.GetComponent<PlayerMovement>().IsDashing() && embeddedWeapon)
                 Destroy(gameObject);
             else
                 player.TakeDamage(1);
+            embeddedWeapon = null;
         }
     }
 }
