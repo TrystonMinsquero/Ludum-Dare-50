@@ -1320,5 +1320,9 @@ PrefabInstance:
       propertyPath: dashTimeBuffer
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4748293522713676476, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
+      propertyPath: orthographic size
+      value: 3.311754
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
