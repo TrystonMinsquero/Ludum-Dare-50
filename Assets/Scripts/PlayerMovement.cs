@@ -1,7 +1,19 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
+public enum Direction
+{
+    UP,
+    UP_RIGHT,
+    RIGHT,
+    DOWN_RIGHT,
+    DOWN,
+    DOWN_LEFT,
+    LEFT,
+    UP_LEFT
+}
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -60,18 +72,88 @@ public class PlayerMovement : MonoBehaviour
         {
             // move
             _rb.velocity = _controller.MoveInput * moveSpeed;
-            if(_rb.velocity.magnitude > 0.3f)
-                lookDirection = _controller.MoveInput;
 
             // look
-            if (_controller.LookInput.magnitude > .1f)
-                lookDirection = _controller.LookInput;
+            // if (_controller.LookInput.magnitude > .1f)
+            //     lookDirection = _controller.LookInput;
+            
+            
+            if(_rb.velocity.magnitude > 0.3f)
+                lookDirection = _controller.MoveInput;
             
             
             //Vector2 lookDir = (_controller.LookPosition - transform.position).normalized;
             //transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDir.y, lookDir.x) + 90);
             //_rb.velocity = Vector2.zero;
         }
+    }
+    
+    public Vector2 GetDirectionVector() {
+        var v = lookDirection.normalized;
+        var x = (Mathf.Abs(v.x) > 0.5f) ? Mathf.Sign(v.x) : 0;
+        var y = (Mathf.Abs(v.y) > 0.5f) ? Mathf.Sign(v.y) : 0;
+        return new Vector2(x, y);
+    }
+
+    public Direction GetDirection()
+    {
+        // float mid = Mathf.Sin(Mathf.Deg2Rad * 45);
+        // Vector2[] directions = new Vector2[8];
+        // directions[(int) Direction.UP] = Vector2.up;
+        // directions[(int) Direction.UP_RIGHT] = new Vector2(mid, mid);
+        // directions[(int) Direction.RIGHT] = Vector2.up;
+        // directions[(int) Direction.DOWN_RIGHT] = new Vector2(mid, -mid);
+        // directions[(int) Direction.DOWN] = Vector2.up;
+        // directions[(int) Direction.DOWN_LEFT] = new Vector2(-mid, -mid);
+        // directions[(int) Direction.LEFT] = Vector2.up;
+        // directions[(int) Direction.UP_LEFT] = new Vector2(-mid, mid);
+        //
+        // float closestVal = Mathf.Infinity;
+        // float closestIndex = -1;
+        // Vector2 v1 = lookDirection.normalized;
+        // for (int i = 0; i < directions.Length; i++)
+        // {
+        //     Vector2 v2 = directions[i].normalized;
+        //     float val = v1.magnitude * v2.magnitude * Mathf.Cos(Vector2.Dot(v1, v2));
+        //     val = Mathf.Abs(1 - val);
+        //     if (val < closestVal)
+        //     {
+        //         closestIndex = i;
+        //         closestVal = val;
+        //     }
+        // }
+        Vector2 v = GetDirectionVector();
+        // Debug.Log(v);
+        switch (v.x)
+        {
+            case 0:
+                if (v.y == 1)
+                    return Direction.UP;
+                if (v.y == -1)
+                    return Direction.DOWN;
+                break;
+            case 1:
+                if (v.y == 1)
+                    return Direction.UP_RIGHT;
+                if (v.y == -1)
+                    return Direction.DOWN_RIGHT;
+                return Direction.RIGHT;
+                break;
+            case -1:
+                if (v.y == 1)
+                    return Direction.UP_LEFT;
+                if (v.y == -1)
+                    return Direction.DOWN_LEFT;
+                return Direction.LEFT;
+                break;
+                
+                    
+        }
+        Debug.LogWarning($"{v} could not be converted to a direction");
+        return Direction.DOWN;
+        // Debug.Log($"dir: {lookDirection} goes to {(Direction) (closestIndex)}" );
+
+        // return (Direction) (closestIndex);
     }
 
     private void Update()
@@ -91,5 +173,10 @@ public class PlayerMovement : MonoBehaviour
             StopCoroutine(Dash());
             EndDash();
         }
+    }
+
+    public bool IsDashing()
+    {
+        return isDashing;
     }
 }
