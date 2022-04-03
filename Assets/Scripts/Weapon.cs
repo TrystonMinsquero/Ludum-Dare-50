@@ -49,7 +49,7 @@ public class Weapon : MonoBehaviour
     private void StopThrow()
     {
         _rb.velocity = Vector2.zero;
-        canPickUp = true;
+        //canPickUp = true;
         isInMotion = false;
     }
 
@@ -67,6 +67,7 @@ public class Weapon : MonoBehaviour
         }
         if (other.CompareTag("Wall"))
         {
+            canPickUp = true;
             StopThrow();
         }
         if (other.TryGetComponent<Enemy>(out var enemy))
