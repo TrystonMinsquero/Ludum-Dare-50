@@ -125,6 +125,7 @@ public abstract class Enemy : MonoBehaviour
         _aiPath.canMove = false;
         _aiPath.maxSpeed = 0;
         canAttackTime = Mathf.Infinity;
+        _bc.enabled = false;
         StartCoroutine(PlayDeathAnim(1f));
     }
 
