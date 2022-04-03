@@ -9,23 +9,29 @@ public class Room : MonoBehaviour
     public Door[] doors;
     public bool completed = false;
     private Light2D[] _lights;
+    
+    
+    public event Action<Room> EnteredRoom = delegate(Room room) {  };
+    public event Action<Room> CompletedRoom = delegate(Room room) {  };
 
     public void TurnOn()
     {
+        SetLightsActive(true);
+        
         if (completed)
             return;
-        
+
         foreach(Door door in doors)
             door.Close();
-        
-        SetLightsActive(true);
     }
 
     private void Update()
     {
-        // if(!completed)
-        //     if(enemies == null || enemies.Count <= 0)
-        //         CompleteRoom();
+        if(!completed)
+            if (enemies == null || enemies.Count <= 0)
+            {
+                CompleteRoom();
+            }
     }
 
     public void CompleteRoom()
@@ -35,6 +41,7 @@ public class Room : MonoBehaviour
         SetLightsActive(true);
         
         completed = true;
+        CompletedRoom.Invoke(this);
     }
 
     public void Start()
@@ -52,15 +59,17 @@ public class Room : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             Debug.Log($"{name} Entered");
+            EnteredRoom.Invoke(this);
             TurnOn();
         }
     }
 
-    private void SetLightsActive(bool enabled)
+    public void SetLightsActive(bool enabled)
     {
         foreach (Light2D light in _lights)
         {
             light.enabled = enabled;
         }
     }
+
 }
