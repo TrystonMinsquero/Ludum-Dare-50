@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: 585a24ee8f36f40448a95c61d5003c81
+guid: 9be1e342eff9aac4e93039ce1bb1769b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5109800731312803259
-    second: Viking Front & Walking_0
+      213: 194740202553239435
+    second: Ogre Attack_0
   - first:
-      213: -7869259169256659754
-    second: Viking Front & Walking_1
-  - first:
-      213: -3211611102661801049
-    second: Viking Front & Walking_2
-  - first:
-      213: 6922342409209306836
-    second: Viking Front & Walking_3
+      213: 6416181575158794575
+    second: Ogre Attack_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,49 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Viking Front & Walking_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 542b119ce475619b0800000000000000
-      internalID: -5109800731312803259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Viking Front & Walking_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d4a8fa8a76cac290800000000000000
-      internalID: -7869259169256659754
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Viking Front & Walking_2
+      name: Ogre Attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -159,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab842dc7b01e63d0800000000000000
-      internalID: -3211611102661801049
+      spriteID: b876ca4be2bd3b200800000000000000
+      internalID: 194740202553239435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Viking Front & Walking_3
+      name: Ogre Attack_1
       rect:
         serializedVersion: 2
         x: 32
@@ -180,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4deda8abeb9111060800000000000000
-      internalID: 6922342409209306836
+      spriteID: f490fb1f52bda0950800000000000000
+      internalID: 6416181575158794575
       vertices: []
       indices: 
       edges: []

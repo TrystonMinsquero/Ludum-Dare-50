@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 585a24ee8f36f40448a95c61d5003c81
+guid: 5d5d876d2ad160b4dbcf6285a717e2ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5109800731312803259
-    second: Viking Front & Walking_0
+      213: 8080694991948584112
+    second: Goblin Walking_0
   - first:
-      213: -7869259169256659754
-    second: Viking Front & Walking_1
+      213: -4587857958797934588
+    second: Goblin Walking_1
   - first:
-      213: -3211611102661801049
-    second: Viking Front & Walking_2
-  - first:
-      213: 6922342409209306836
-    second: Viking Front & Walking_3
+      213: -5618305839150310983
+    second: Goblin Walking_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Viking Front & Walking_0
+      name: Goblin Walking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,14 +114,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 542b119ce475619b0800000000000000
-      internalID: -5109800731312803259
+      spriteID: 0b49f552845642070800000000000000
+      internalID: 8080694991948584112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Viking Front & Walking_1
+      name: Goblin Walking_1
       rect:
         serializedVersion: 2
         x: 32
@@ -138,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d4a8fa8a76cac290800000000000000
-      internalID: -7869259169256659754
+      spriteID: 40086e57e77a450c0800000000000000
+      internalID: -4587857958797934588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Viking Front & Walking_2
+      name: Goblin Walking_2
       rect:
         serializedVersion: 2
         x: 0
@@ -159,29 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ab842dc7b01e63d0800000000000000
-      internalID: -3211611102661801049
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Viking Front & Walking_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4deda8abeb9111060800000000000000
-      internalID: 6922342409209306836
+      spriteID: 9b951f93b94c702b0800000000000000
+      internalID: -5618305839150310983
       vertices: []
       indices: 
       edges: []
