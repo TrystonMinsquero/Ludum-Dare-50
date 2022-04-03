@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerVisuals : MonoBehaviour
 {
+    public TrailRenderer trail;
     private PlayerController _controller;
+    private PlayerMovement _pm;
     private SpriteRenderer _sr;
     private Animator _anim;
 
@@ -30,6 +32,7 @@ public class PlayerVisuals : MonoBehaviour
         _controller = GetComponent<PlayerController>();
         _sr = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
+        _pm = GetComponent<PlayerMovement>();
     }
 
     private void Update()
@@ -38,6 +41,17 @@ public class PlayerVisuals : MonoBehaviour
             _sr.flipX = false;
         else if (_controller.LookInput.x < 0 && _sr.flipX == false)
             _sr.flipX = true;
+        
+        float x = _pm.GetDirectionVector().x;
+        if (x > 0 && _sr.flipX == true)
+            _sr.flipX = false;
+        else if (x < 0 && _sr.flipX == false)
+            _sr.flipX = true;
+
+        if(trail)
+            trail.enabled = _pm.IsDashing();
+        
+        
         SetAnimation();
     }
 
@@ -53,8 +67,6 @@ public class PlayerVisuals : MonoBehaviour
             stateName += "Walk";
         else
             stateName += "Idle";
-
-
 
         switch (dir)
         {

@@ -6,8 +6,10 @@ public class SlowMark : Mark
 {
     public override IEnumerator ApplyMark(Enemy enemy)
     {
-        enemy.moveSpeed = 0;
+        enemy.SetSpeed(enemy.moveSpeedInit / 2);
+        isActive = true;
         yield return new WaitForSeconds(duration);
-        enemy.moveSpeed = enemy.moveSpeedInit;
+        enemy.SetSpeed(enemy.moveSpeedInit);
+        isActive = false;
     }
 }
