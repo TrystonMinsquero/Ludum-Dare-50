@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
@@ -12,20 +13,12 @@ public abstract class Enemy : MonoBehaviour
     public float chargeUpTime;
     public bool canMoveWhileCharging;
     public float moveSpeedInit = 3f;
+    public List<Mark> activeMarks;
 
-    public float moveSpeed
-    {
-        get
-        {
-            return moveSpeed;
-        }
-        set
-        {
-            _aiPath.maxSpeed = value;
-        }
-    }
+    public float moveSpeed = 3f;
     protected AIDestinationSetter _setter;
     protected AIPath _aiPath;
+    protected SpriteRenderer _markedSR;
     protected bool chargingUp;
 
     protected float TargetDistance
@@ -41,13 +34,26 @@ public abstract class Enemy : MonoBehaviour
 
     protected float canAttackTime;
 
-    private void Start()
+    private Transform embeddedWeapon;
+    private Vector3 embeddedWeaponOffset;
+
+    protected virtual void Start()
     {
         _setter = GetComponent<AIDestinationSetter>();
         _aiPath = GetComponent<AIPath>();
-        _aiPath.maxSpeed = moveSpeed;
+        
+        _markedSR = GetComponentsInChildren<SpriteRenderer>()[1];
+        SetSpeed(moveSpeed);
+        activeMarks = new List<Mark>();
     }
-    
+
+    protected virtual void Update()
+    {
+        if (embeddedWeapon)
+            embeddedWeapon.position = embeddedWeaponOffset + transform.position;
+        _markedSR.enabled = activeMarks.Count > 0;
+    }
+
     protected IEnumerator ChargeUpThenAttack(float time)
     {
         Debug.Log($"{name} Charging Up!");
@@ -58,7 +64,6 @@ public abstract class Enemy : MonoBehaviour
         StartCoroutine(Attack());
         chargingUp = false;
     }
-
 
     public void SetTarget(Transform target)
     {
@@ -76,8 +81,44 @@ public abstract class Enemy : MonoBehaviour
         _aiPath.canMove = true;
     }
 
+    public void SetSpeed(float speed)
+    {
+        _aiPath.maxSpeed = speed;
+    }
 
+    public void HitByWeapon(Weapon weapon)
+    {
+        embeddedWeapon = weapon.transform;
+        embeddedWeaponOffset = (embeddedWeapon.position - transform.position);
+        ReceiveMarks(weapon.marks);
+    }
 
+    public void ReceiveMarks(List<Mark> marks)
+    {
+        foreach (var mark in marks)
+        {
+            ReceiveMark(mark);
+        }
+    }
 
+    public void ReceiveMark(Mark mark)
+    {
+        activeMarks.Add(mark);
+        mark.isActive = true;
+        StartCoroutine(mark.ApplyMark(this));
+    }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.TryGetComponent<Player>(out var player))
+        {
+            if(embeddedWeapon)
+                player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
+            embeddedWeapon = null;
+            if (player.GetComponent<PlayerMovement>().IsDashing())
+                Destroy(gameObject);
+            else
+                player.TakeDamage(1);
+        }
+    }
 }
