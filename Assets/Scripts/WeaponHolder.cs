@@ -1,36 +1,37 @@
+using System;
 using UnityEngine;
 
 public class WeaponHolder : MonoBehaviour
 {
     public Weapon weapon;
-    private PlayerController _controller;
-    public bool HasWeapon {get{return weapon!=null;}}
     public Transform weaponSpot;
-
-    private Vector2 weaponPosition;
+    private PlayerController _controller;
+    private Vector3 _weaponPosition;
 
 
     private void ThrowWeapon(Vector2 lookDir)
     {
-        Debug.Log("Throw weapon!");
-        if (!HasWeapon)
+        if (weapon == null)
             return;
-        if(_controller.LookInput.magnitude > .1f)   
-            weapon.Throw(_controller.LookInput);
+        if (lookDir.magnitude > .1f)
+        {
+            weapon.Throw(lookDir);
+            weapon = null;
+        }   
     }
 
     public void PickUpWeapon(Weapon weapon)
     {
-        if(weapon == null)
+        if(weapon == null || this.weapon )
             return;
         this.weapon = weapon;
-        this.weapon.transform.localPosition = weaponPosition;
+        this.weapon.transform.position = transform.position + _weaponPosition;
     }
 
     private void Awake()
     {
         _controller = GetComponent<PlayerController>();
-        weaponPosition = weaponSpot.localPosition;
+        _weaponPosition = weaponSpot.localPosition;
         if (weapon.transform.parent == transform)
             weapon.transform.SetParent(null);
     }
@@ -38,16 +39,25 @@ public class WeaponHolder : MonoBehaviour
     private void Update()
     {
         
-        if(!HasWeapon)
+        if(weapon == null)
             return;
+        
         
         if(_controller.ThrowInput)
             ThrowWeapon(_controller.LookInput);
-        weapon.SetRotation(_controller.LookInput);
+        weapon?.SetRotation(_controller.LookInput);
 
-        Vector3 position = weaponPosition;
+        Vector3 position = _weaponPosition;
         if (_controller.LookInput.x < 0)
-            position.x = -weaponPosition.x;
-        weapon.transform.localPosition = position;
+            position.x = -_weaponPosition.x;
+        if(weapon)
+            weapon.transform.position = transform.position + position;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log(col.gameObject.name);
+        if(col.gameObject.TryGetComponent<Weapon>(out var weapon))
+            PickUpWeapon(weapon);
     }
 }

@@ -10,8 +10,9 @@ public class MeleeEnemy : Enemy
     public float attackRange = .5f;
 
     
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if ( _aiPath.reachedDestination && !chargingUp && canAttackTime <= Time.time && _setter.target != null)
             StartCoroutine(ChargeUpThenAttack(chargeUpTime));
     }

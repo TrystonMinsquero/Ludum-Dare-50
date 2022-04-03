@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        marks = new List<Mark>() {new Mark()};
     }
 
     public void SetRotation(Vector2 lookDir)
@@ -29,32 +30,49 @@ public class Weapon : MonoBehaviour
 
     public void Throw(Vector2 direction)
     {
+        Debug.Log("Throw weapon!");
+        canPickUp = false;
         StartCoroutine(Throwing(direction));
     }
 
     private IEnumerator Throwing(Vector2 direction)
     {
         isInMotion = true;
+        _rb.velocity = direction.normalized * throwSpeed;
         
         while (isInMotion)
         {
             yield return null;
         }
-
-        canPickUp = true;
-
     }
 
     private void StopThrow()
     {
-        
+        _rb.velocity = Vector2.zero;
+        canPickUp = true;
+        isInMotion = false;
     }
 
-    private void OnTriggerEnter2D(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Enemy"))
+        if(!isInMotion)
+            return;
+        if(canPickUp && other.CompareTag("Player"))
         {
-            
+            Debug.Log("Pick up");
+            if (other.TryGetComponent<WeaponHolder>(out var player))
+                player.PickUpWeapon(this);
+            else
+                Debug.LogWarning("WTF");
+        }
+        if (other.CompareTag("Wall"))
+        {
+            StopThrow();
+        }
+        if (other.TryGetComponent<Enemy>(out var enemy))
+        {
+            StopThrow();
+            enemy.HitByWeapon(this);
         }
     }
 }
