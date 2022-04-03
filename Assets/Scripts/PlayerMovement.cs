@@ -46,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
         _rb.drag = 0;
         isDashing = true;
         Vector3 startPos = transform.position;
-        _rb.velocity = lookDirection.normalized * dashSpeed; //initial velocity added
+        _rb.velocity = _controller.LookInput.magnitude < .5f ? 
+            lookDirection.normalized * dashSpeed : 
+            _controller.LookInput.normalized * dashSpeed; //initial velocity added
         float maxDashTime = dashTimeBuffer; //Estimated
         float timeStarted = Time.time;
         while ((transform.position - startPos).magnitude < targetDashDistance && Time.time - timeStarted < maxDashTime)

@@ -8,8 +8,6 @@ public class WeaponHolder : MonoBehaviour
     public Transform weaponSpot;
 
     private Vector2 weaponPosition;
-    public float throwSpeed;
-    public float rotateSpeed;
 
 
     private void ThrowWeapon(Vector2 lookDir)
@@ -17,6 +15,8 @@ public class WeaponHolder : MonoBehaviour
         Debug.Log("Throw weapon!");
         if (!HasWeapon)
             return;
+        if(_controller.LookInput.magnitude > .1f)   
+            weapon.Throw(_controller.LookInput);
     }
 
     public void PickUpWeapon(Weapon weapon)
@@ -31,15 +31,18 @@ public class WeaponHolder : MonoBehaviour
     {
         _controller = GetComponent<PlayerController>();
         weaponPosition = weaponSpot.localPosition;
-
+        if (weapon.transform.parent == transform)
+            weapon.transform.SetParent(null);
     }
 
     private void Update()
     {
-        if(_controller.ThrowInput)
-            ThrowWeapon(_controller.LookInput);
+        
         if(!HasWeapon)
             return;
+        
+        if(_controller.ThrowInput)
+            ThrowWeapon(_controller.LookInput);
         weapon.SetRotation(_controller.LookInput);
 
         Vector3 position = weaponPosition;
