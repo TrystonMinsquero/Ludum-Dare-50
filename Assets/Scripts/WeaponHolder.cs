@@ -66,10 +66,9 @@ public class WeaponHolder : MonoBehaviour
         if(weapon)
             weapon.transform.position = transform.position + position;
     }
-
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log(col.gameObject.name);
         if(col.gameObject.TryGetComponent<Weapon>(out var weapon))
             PickUpWeapon(weapon);
     }
