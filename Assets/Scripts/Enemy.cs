@@ -136,8 +136,14 @@ public abstract class Enemy : MonoBehaviour
     private IEnumerator PlayDeathAnim(float duration)
     {
         Debug.Log("Dying");
+        Vector3 pos = transform.position;
         isDying = true;
-        yield return new WaitForSeconds(duration);
+        float endTime = Time.time + duration;
+        while (Time.time < endTime)
+        {
+            transform.position = pos;
+            yield return null;
+        }
         Debug.Log("Dead");
         Destroy(gameObject);
         isDying = false;

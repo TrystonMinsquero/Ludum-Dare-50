@@ -14,7 +14,10 @@ public class RangedEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if ( _aiPath.reachedDestination && !chargingUp && canAttackTime <= Time.time && _setter.target != null)
+        if (!_setter.target)
+            return;
+        float targetDistance = (_setter.target.position - transform.position).magnitude;
+        if ( targetDistance <= attackRange && !chargingUp && canAttackTime <= Time.time && _setter.target != null)
             StartCoroutine(ChargeUpThenAttack(chargeUpTime));
     }
 
@@ -22,6 +25,7 @@ public class RangedEnemy : Enemy
     {
         if (_setter.target != null)
         {
+            // var projectile = Instantiate(this.projectile, projectTileLaunchPoint.position, Quaternion.identity);
             isAttacking = true;
         }
         isAttacking = false;
@@ -31,6 +35,7 @@ public class RangedEnemy : Enemy
 
     private void OnDrawGizmosSelected()
     {
+            Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
     protected override void SetAnimation()
@@ -44,11 +49,19 @@ public class RangedEnemy : Enemy
         if (isDying)
             stateName += "Death";
         else if (chargingUp)
+            stateName += "Charge";
+        else if (isAttacking)
             stateName += "Attack";
-        else if (_aiPath.velocity.magnitude > .05f)
-            stateName += "Walk";
         else
-            stateName += "Idle";
+        {
+            if (canAttackTime <= Time.time)
+                stateName += "Weapon";
+            if (_aiPath.velocity.magnitude > .05f)
+                stateName += "Walk";
+            else
+                stateName += "Idle";
+        }
+           
         _anim.Play(stateName);
     }
 }
