@@ -59,10 +59,10 @@ public class MeleeEnemy : Enemy
         string stateName = enemyName;
         if (isDying)
             stateName += "Death";
-        else if (_aiPath.velocity.magnitude > .05f)
-            stateName += "Walk";
         else if (chargingUp)
             stateName += "Attack";
+        else if (_aiPath.velocity.magnitude > .05f)
+            stateName += "Walk";
         else
             stateName += "Idle";
         _anim.Play(stateName);
