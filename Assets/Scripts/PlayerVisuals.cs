@@ -7,6 +7,7 @@ public class PlayerVisuals : MonoBehaviour
 {
     private PlayerController _controller;
     private SpriteRenderer _sr;
+    private Animator _anim;
 
     public float Scale
     {
@@ -28,6 +29,7 @@ public class PlayerVisuals : MonoBehaviour
         Scale = 1;
         _controller = GetComponent<PlayerController>();
         _sr = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -36,14 +38,59 @@ public class PlayerVisuals : MonoBehaviour
             _sr.flipX = false;
         else if (_controller.LookInput.x < 0 && _sr.flipX == false)
             _sr.flipX = true;
+        SetAnimation();
     }
 
     public void SetAnimation()
     {
         var pm = GetComponent<PlayerMovement>();
         Direction dir = pm.GetDirection();
-        string stateName = "";
-        if()
+        // Debug.Log("dir: " + dir);
+        string stateName = "viking";
+        if (pm.IsDashing())
+            stateName += "Dash";
+        else if (_controller.MoveInput.magnitude > .1f)
+            stateName += "Walk";
+        else
+            stateName += "Idle";
+
+
+
+        switch (dir)
+        {
+            case Direction.UP:
+                stateName += "Up";
+                break;
+            case Direction.RIGHT:
+                stateName += "Side";
+                break;
+            case Direction.LEFT:
+                stateName += "Side";
+                break;
+            case Direction.DOWN:
+                stateName += "Down";
+                break;
+            case Direction.UP_RIGHT:
+                stateName += "Up";
+                break;
+            case Direction.UP_LEFT:
+                stateName += "Up";
+                break;
+            case Direction.DOWN_RIGHT:
+                stateName += "Down";
+                break;
+            case Direction.DOWN_LEFT:
+                stateName += "Down";
+                break;
+        }
+
+        if (_controller.MoveInput.magnitude > .1f &&
+            (dir == Direction.UP_RIGHT || dir == Direction.UP_LEFT || dir == Direction.DOWN_RIGHT ||
+             dir == Direction.DOWN_LEFT))
+            stateName += "Side";
+            
+
+        _anim.Play(stateName);
 
     }
 
