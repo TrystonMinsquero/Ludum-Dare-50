@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private bool isDashing;
     private Vector2 lookDirection;
+    private Direction _direction;
 
     private float _canDashTime;
     private void Start()
@@ -97,31 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Direction GetDirection()
     {
-        // float mid = Mathf.Sin(Mathf.Deg2Rad * 45);
-        // Vector2[] directions = new Vector2[8];
-        // directions[(int) Direction.UP] = Vector2.up;
-        // directions[(int) Direction.UP_RIGHT] = new Vector2(mid, mid);
-        // directions[(int) Direction.RIGHT] = Vector2.up;
-        // directions[(int) Direction.DOWN_RIGHT] = new Vector2(mid, -mid);
-        // directions[(int) Direction.DOWN] = Vector2.up;
-        // directions[(int) Direction.DOWN_LEFT] = new Vector2(-mid, -mid);
-        // directions[(int) Direction.LEFT] = Vector2.up;
-        // directions[(int) Direction.UP_LEFT] = new Vector2(-mid, mid);
-        //
-        // float closestVal = Mathf.Infinity;
-        // float closestIndex = -1;
-        // Vector2 v1 = lookDirection.normalized;
-        // for (int i = 0; i < directions.Length; i++)
-        // {
-        //     Vector2 v2 = directions[i].normalized;
-        //     float val = v1.magnitude * v2.magnitude * Mathf.Cos(Vector2.Dot(v1, v2));
-        //     val = Mathf.Abs(1 - val);
-        //     if (val < closestVal)
-        //     {
-        //         closestIndex = i;
-        //         closestVal = val;
-        //     }
-        // }
+
         Vector2 v = GetDirectionVector();
         // Debug.Log(v);
         switch (v.x)
@@ -131,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
                     return Direction.UP;
                 if (v.y == -1)
                     return Direction.DOWN;
+                if (v.y == 0)
+                    return _direction;
                 break;
             case 1:
                 if (v.y == 1)
