@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433ad389f8135a0419dd050614904047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
+  weapon: {fileID: 1557667924637793580}
   weaponSpot: {fileID: 2043623018420626163}
 --- !u!114 &4748293522208193720
 MonoBehaviour:
@@ -171,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0317508, y: -0.059691444}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6418514, y: 0.88061714}
   m_EdgeRadius: 0
 --- !u!114 &4748293522208193727
 MonoBehaviour:
@@ -551,3 +551,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3307034330258524626, guid: fa20c2a2633f28d4e8526becf1a1cd8e, type: 3}
   m_PrefabInstance: {fileID: 626715655519749418}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1557667924637793580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2103031664339875846, guid: fa20c2a2633f28d4e8526becf1a1cd8e, type: 3}
+  m_PrefabInstance: {fileID: 626715655519749418}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5aae1cdea71ec54a9e763bc4423573b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
