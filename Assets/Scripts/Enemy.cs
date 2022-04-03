@@ -7,7 +7,8 @@ using Pathfinding;
 
 public abstract class Enemy : MonoBehaviour
 {
-    [Header("Generic")]
+    [Header("Generic")] 
+    public string enemyName;
     public bool isMarked;
     public int damageAmount = 5;
     public float attackInterval = .1f;
@@ -17,23 +18,14 @@ public abstract class Enemy : MonoBehaviour
     public List<Mark> activeMarks;
 
     public float moveSpeed = 3f;
+    [HideInInspector]
+    public bool isDying;
     protected AIDestinationSetter _setter;
     protected AIPath _aiPath;
     protected SpriteRenderer _markedSR;
     protected bool chargingUp;
     
     public event Action<Enemy> EnemyDied = delegate(Enemy enemy) {  };
-
-    protected float TargetDistance
-    {
-        get
-        {
-            if (_setter.target == null)
-                return Mathf.Infinity;
-            else
-                return (_setter.target.position - transform.position).magnitude;
-        }
-    }
 
     protected float canAttackTime;
 
@@ -55,6 +47,7 @@ public abstract class Enemy : MonoBehaviour
         if (embeddedWeapon)
             embeddedWeapon.position = embeddedWeaponOffset + transform.position;
         _markedSR.enabled = activeMarks.Count > 0;
+        SetAnimation();
     }
 
     protected IEnumerator ChargeUpThenAttack(float time)
@@ -113,10 +106,14 @@ public abstract class Enemy : MonoBehaviour
 
     private IEnumerator PlayDeathAnim(float duration)
     {
+        _aiPath.canMove = false;
+        canAttackTime = Mathf.Infinity;
         Debug.Log("Dying");
+        isDying = true;
         yield return new WaitForSeconds(duration);
         Debug.Log("Dead");
         Destroy(gameObject);
+        isDying = false;
     }
 
     public void ReceiveMark(Mark mark)
@@ -133,10 +130,14 @@ public abstract class Enemy : MonoBehaviour
             if(embeddedWeapon)
                 player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
             if (player.GetComponent<PlayerMovement>().IsDashing() && embeddedWeapon)
-                Destroy(gameObject);
+                Die();
             else
                 player.TakeDamage(1);
             embeddedWeapon = null;
         }
     }
+
+    protected abstract void SetAnimation();
+
+
 }

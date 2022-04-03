@@ -46,4 +46,10 @@ public class MeleeEnemy : Enemy
         if (attackPoint != null)
             Gizmos.DrawWireSphere(transform.position + attackPoint, attackRadius);
     }
+
+    protected override void SetAnimation()
+    {
+        string stateName = enemyName;
+        
+    }
 }

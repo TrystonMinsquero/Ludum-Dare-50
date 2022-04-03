@@ -41,5 +41,9 @@ public class Door : MonoBehaviour
         _turnOffOnOpen = new Behaviour[1];
         _turnOffOnOpen[0] = GetComponent<TilemapCollider2D>();
         _renderer = GetComponent<TilemapRenderer>();
+        if (open)
+            Open();
+        else
+            Close();
     }
 }

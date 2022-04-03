@@ -14,7 +14,7 @@ public class Room : MonoBehaviour
     public event Action<Room> EnteredRoom = delegate(Room room) {  };
     public event Action<Room> CompletedRoom = delegate(Room room) {  };
 
-    public void TurnOn()
+    public void TurnOn(Transform target = null)
     {
         SetLightsActive(true);
         CheckForRoomCompletion();
@@ -24,6 +24,10 @@ public class Room : MonoBehaviour
 
         foreach(Door door in doors)
             door.Close();
+        foreach (var enemy in enemies)
+        {
+            enemy.SetTarget(target);
+        }
     }
 
     private void Update()
@@ -43,7 +47,11 @@ public class Room : MonoBehaviour
 
     private void EnemyDied(Enemy enemy)
     {
+        enemy.EnemyDied -= EnemyDied;
         enemies.Remove(enemy);
+        for(int i = enemies.Count - 1; i >= 0; i--)
+            if (enemies[i] == null || enemies[i].isDying)
+                enemies.RemoveAt(i);
         CheckForRoomCompletion();
     }
 
@@ -60,12 +68,15 @@ public class Room : MonoBehaviour
     public void Awake()
     {
         _lights = GetComponentsInChildren<Light2D>();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.EnemyDied += EnemyDied;
+        }
         
     }
 
     private void Start()
     {
-        
         CheckForRoomCompletion();
         if(!completed)
             SetLightsActive(false);
@@ -77,7 +88,7 @@ public class Room : MonoBehaviour
         {
             Debug.Log($"{name} Entered");
             EnteredRoom.Invoke(this);
-            TurnOn();
+            TurnOn(col.transform);
         }
     }
 
