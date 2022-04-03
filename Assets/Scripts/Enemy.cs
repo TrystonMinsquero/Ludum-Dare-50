@@ -25,9 +25,12 @@ public abstract class Enemy : MonoBehaviour
     protected AIDestinationSetter _setter;
     protected AIPath _aiPath;
     protected BoxCollider2D _bc;
+    protected Animator _anim;
+    protected SpriteRenderer _sr;
     [SerializeField]
     protected SpriteRenderer _markedSR;
     protected bool chargingUp;
+    protected bool isAttacking;
     
     public event Action<Enemy> EnemyDied = delegate(Enemy enemy) {  };
 
@@ -36,15 +39,20 @@ public abstract class Enemy : MonoBehaviour
     private Transform embeddedWeapon;
     private Vector3 embeddedWeaponOffset;
 
-    protected virtual void Start()
+    private void Awake()
     {
         _setter = GetComponent<AIDestinationSetter>();
         _aiPath = GetComponent<AIPath>();
         _bc = GetComponent<BoxCollider2D>();
-        _markedSR = GetComponentsInChildren<SpriteRenderer>()[1];
+        _sr = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
         SetSpeed(moveSpeed);
         activeMarks = new List<Mark>();
     }
+    
+    // protected virtual void Start()
+    // {
+    // }
 
     protected virtual void Update()
     {

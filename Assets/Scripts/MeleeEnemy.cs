@@ -21,6 +21,7 @@ public class MeleeEnemy : Enemy
     {
         if (_setter.target != null)
         {
+            isAttacking = true;
             Vector3 attackPoint = (_setter.target.position - transform.position).normalized * attackRange;
             Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position + attackPoint, attackRadius);
             
@@ -31,6 +32,7 @@ public class MeleeEnemy : Enemy
                     break;
                 }
         }
+        isAttacking = false;
         yield return null;
         EndAttack();
     }
@@ -49,8 +51,20 @@ public class MeleeEnemy : Enemy
 
     protected override void SetAnimation()
     {
+        if (_aiPath.velocity.x > 0)
+            _sr.flipX = true;
+        else if(_aiPath.velocity.x < 0)
+            _sr.flipX = false;
+        
         string stateName = enemyName;
-        
-        
+        if (isDying)
+            stateName += "Death";
+        else if (_aiPath.velocity.magnitude > .05f)
+            stateName += "Walk";
+        else if (chargingUp)
+            stateName += "Attack";
+        else
+            stateName += "Idle";
+        _anim.Play(stateName);
     }
 }
