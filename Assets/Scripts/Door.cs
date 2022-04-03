@@ -24,10 +24,13 @@ public class Door : MonoBehaviour
 
     public void Open()
     {
-        foreach (var behaviour in _turnOffOnOpen)
-        {
-            behaviour.enabled = false;
-        }
+        if(_turnOffOnOpen != null)
+            foreach (var behaviour in _turnOffOnOpen)
+            {
+                behaviour.enabled = false;
+            }
+        else
+            Debug.LogWarning("This door has no door!?!");
         
         _renderer.enabled = false;
         open = true;
@@ -38,10 +41,5 @@ public class Door : MonoBehaviour
         _turnOffOnOpen = new Behaviour[1];
         _turnOffOnOpen[0] = GetComponent<TilemapCollider2D>();
         _renderer = GetComponent<TilemapRenderer>();
-        
-        if (open)
-            Open();
-        else
-            Close();
     }
 }

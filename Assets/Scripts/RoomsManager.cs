@@ -12,6 +12,10 @@ public class RoomsManager : MonoBehaviour
     private void Awake()
     {
         rooms = GetComponentsInChildren<Room>();
+    }
+
+    private void Start()
+    {
         TurnOnAllCompletedRooms();
     }
 

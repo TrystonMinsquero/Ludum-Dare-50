@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1387715107}
   - component: {fileID: 8546549646428808945}
   - component: {fileID: 822463251757171842}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   dashDelay: 0.2
-  dashSpeed: 25
-  targetDashDistance: 2
+  dashSpeed: 35
+  targetDashDistance: 4
   dashTimeBuffer: 0.3
 --- !u!114 &4748293522208193721
 MonoBehaviour:
@@ -171,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0317508, y: -0.059691444}
+  m_Offset: {x: 0.0317508, y: -0.18985903}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6418514, y: 0.88061714}
+  m_Size: {x: 0.6418514, y: 0.62028193}
   m_EdgeRadius: 0
 --- !u!114 &4748293522208193727
 MonoBehaviour:
@@ -398,7 +398,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -75,4 +75,6 @@ public class Weapon : MonoBehaviour
             enemy.HitByWeapon(this);
         }
     }
+
+    public bool CanPickUp() => canPickUp;
 }
