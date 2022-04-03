@@ -75,8 +75,11 @@ public abstract class Enemy : MonoBehaviour
     {
         Debug.Log($"{name} Charging Up!");
         chargingUp = true;
-        if(!canMoveWhileCharging)
+        if (!canMoveWhileCharging)
+        {
+            _aiPath.maxSpeed = 0;
             _aiPath.canMove = false;
+        }
         yield return new WaitForSeconds(time);
         StartCoroutine(Attack());
         chargingUp = false;
@@ -96,6 +99,7 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log($"{name} Attacked!");
         canAttackTime = Time.time + attackInterval;
         _aiPath.canMove = true;
+        _aiPath.maxSpeed = moveSpeed;
     }
 
     public void SetSpeed(float speed)
