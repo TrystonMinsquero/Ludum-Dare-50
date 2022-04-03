@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 962899b5382487b4c84994228d63f874
+guid: c32dc3a7ca58d3644b51e512d58f34f1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4655355084751455213
-    second: Tutorial Character_0
+      213: 3909284093089536377
+    second: Dashing Top Right_0
   - first:
-      213: -5805895804060415039
-    second: Tutorial Character_1
+      213: -2131710915339437889
+    second: Dashing Top Right_1
   - first:
-      213: 8554826655677710598
-    second: Tutorial Character_2
+      213: 9096037187550693991
+    second: Dashing Top Right_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tutorial Character_0
+      name: Dashing Top Right_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,14 +114,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de34be1d8c42b9040800000000000000
-      internalID: 4655355084751455213
+      spriteID: 979dfae9b21904630800000000000000
+      internalID: 3909284093089536377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tutorial Character_1
+      name: Dashing Top Right_1
       rect:
         serializedVersion: 2
         x: 32
@@ -135,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cb4c04f6805d6fa0800000000000000
-      internalID: -5805895804060415039
+      spriteID: fb8be5f7734aa62e0800000000000000
+      internalID: -2131710915339437889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tutorial Character_2
+      name: Dashing Top Right_2
       rect:
         serializedVersion: 2
         x: 0
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60186b69489d8b670800000000000000
-      internalID: 8554826655677710598
+      spriteID: 76ac3b311ad9b3e70800000000000000
+      internalID: 9096037187550693991
       vertices: []
       indices: 
       edges: []
