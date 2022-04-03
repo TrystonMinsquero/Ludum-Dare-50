@@ -17,7 +17,6 @@ public abstract class Enemy : MonoBehaviour
     public float moveSpeedInit = 3f;
     public List<Mark> activeMarks;
     public float pushForce;
-    public float pushRadius;
 
     public float moveSpeed = 3f;
     [HideInInspector]
@@ -56,6 +55,10 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
+        SetAnimation();
+        if(isDying)
+            return;
+        
         if (embeddedWeapon)
             embeddedWeapon.position = embeddedWeaponOffset + transform.position;
         _markedSR.enabled = activeMarks.Count > 0;
@@ -67,20 +70,25 @@ public abstract class Enemy : MonoBehaviour
             {
                 Push(col, pushForce);
             }
-        
-        SetAnimation();
     }
 
     protected IEnumerator ChargeUpThenAttack(float time)
     {
         Debug.Log($"{name} Charging Up!");
         chargingUp = true;
-        if (!canMoveWhileCharging)
+        Vector3 pos = transform.position;
+
+        float endTime = Time.time + time;
+        while (Time.time < endTime)
         {
-            _aiPath.maxSpeed = 0;
-            _aiPath.canMove = false;
+            if (!canMoveWhileCharging)
+            {
+                transform.position = pos;
+                _aiPath.canMove = false;
+                _aiPath.maxSpeed = 0;
+            }
+            yield return null;
         }
-        yield return new WaitForSeconds(time);
         StartCoroutine(Attack());
         chargingUp = false;
     }
@@ -130,6 +138,7 @@ public abstract class Enemy : MonoBehaviour
         _aiPath.maxSpeed = 0;
         canAttackTime = Mathf.Infinity;
         _bc.enabled = false;
+        _markedSR.enabled = false;
         StartCoroutine(PlayDeathAnim(1f));
     }
 
