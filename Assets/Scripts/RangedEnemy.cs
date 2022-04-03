@@ -25,8 +25,11 @@ public class RangedEnemy : Enemy
     {
         if (_setter.target != null)
         {
-            // var projectile = Instantiate(this.projectile, projectTileLaunchPoint.position, Quaternion.identity);
             isAttacking = true;
+            var projectile = Instantiate(this.projectile, projectTileLaunchPoint.position, Quaternion.identity).GetComponent<EnemyProjectile>();
+            var direction = (_setter.target.transform.position - projectTileLaunchPoint.position).normalized;
+            projectile.SetRotation(direction);
+            projectile.Throw(direction, this);
         }
         isAttacking = false;
         yield return null;
