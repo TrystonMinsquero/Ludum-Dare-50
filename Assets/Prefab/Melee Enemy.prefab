@@ -78,11 +78,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5b080163dacce4c9150bbf7510f942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: 
   isMarked: 0
   damageAmount: 5
   attackInterval: 0.1
   chargeUpTime: 0.2
   canMoveWhileCharging: 0
+  moveSpeedInit: 3
+  activeMarks: []
   moveSpeed: 3
+  isDying: 0
   attackRadius: 0.5
   attackRange: 0.5
