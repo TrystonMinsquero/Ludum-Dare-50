@@ -17,6 +17,7 @@ public class Room : MonoBehaviour
     public void TurnOn()
     {
         SetLightsActive(true);
+        CheckForRoomCompletion();
         
         if (completed)
             return;
@@ -34,6 +35,18 @@ public class Room : MonoBehaviour
             }
     }
 
+    protected void CheckForRoomCompletion()
+    {
+        if(enemies == null || enemies.Count <= 0)
+            CompleteRoom();
+    }
+
+    private void EnemyDied(Enemy enemy)
+    {
+        enemies.Remove(enemy);
+        CheckForRoomCompletion();
+    }
+
     public void CompleteRoom()
     {
         foreach(Door door in doors)
@@ -44,13 +57,17 @@ public class Room : MonoBehaviour
         CompletedRoom.Invoke(this);
     }
 
-    public void Start()
+    public void Awake()
     {
         _lights = GetComponentsInChildren<Light2D>();
         
-        if(completed)
-            CompleteRoom();
-        else
+    }
+
+    private void Start()
+    {
+        
+        CheckForRoomCompletion();
+        if(!completed)
             SetLightsActive(false);
     }
 

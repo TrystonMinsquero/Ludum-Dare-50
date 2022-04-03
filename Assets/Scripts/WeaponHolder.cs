@@ -22,6 +22,9 @@ public class WeaponHolder : MonoBehaviour
 
     public void PickUpWeapon(Weapon weapon)
     {
+        if (!weapon.CanPickUp())
+            return;
+        
         if(weapon == null || this.weapon )
             return;
         this.weapon = weapon;
@@ -38,9 +41,19 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
-        
-        if(weapon == null)
+
+        if (weapon == null)
+        {
+            //todo: remove this and fix regular collider
+            var collisions = Physics2D.OverlapCircleAll(transform.position, .6f);
+            foreach (var collider in collisions)
+            {
+                if (collider.TryGetComponent<Weapon>(out var weapon))
+                    PickUpWeapon(weapon);
+                Debug.Log(collider);
+            }
             return;
+        }
         
         
         if(_controller.ThrowInput)

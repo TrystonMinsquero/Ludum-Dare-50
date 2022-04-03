@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using Pathfinding;
 
@@ -20,6 +21,8 @@ public abstract class Enemy : MonoBehaviour
     protected AIPath _aiPath;
     protected SpriteRenderer _markedSR;
     protected bool chargingUp;
+    
+    public event Action<Enemy> EnemyDied = delegate(Enemy enemy) {  };
 
     protected float TargetDistance
     {
@@ -99,6 +102,21 @@ public abstract class Enemy : MonoBehaviour
         {
             ReceiveMark(mark);
         }
+    }
+
+    private void Die()
+    {
+        // play death anim
+        EnemyDied.Invoke(this);
+        StartCoroutine(PlayDeathAnim(1f));
+    }
+
+    private IEnumerator PlayDeathAnim(float duration)
+    {
+        Debug.Log("Dying");
+        yield return new WaitForSeconds(duration);
+        Debug.Log("Dead");
+        Destroy(gameObject);
     }
 
     public void ReceiveMark(Mark mark)
