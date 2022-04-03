@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4372130715172379052}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,56 +42,36 @@ Tilemap:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4372130715172379054}
   m_Enabled: 1
-  m_Tiles:
-  - first: {x: 10, y: -1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 10, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
+  m_Tiles: {}
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 3897b4210c78e9b41a7dd96aeba5b3fb, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 21300000, guid: 9fa1223e7aee1f04eae9e7d4764c8425, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 2
+  - m_RefCount: 0
     m_Data:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
+      e00: -2.5244127e-29
+      e01: -4.1598083e+21
+      e02: -1.5851889e+29
+      e03: 0.0000000018038202
+      e10: 7.45e-43
+      e11: 4.5905e-41
+      e12: 7.47e-43
+      e13: 7.45e-43
+      e20: 6e-45
+      e21: -9.6591255e-31
+      e22: -9.658298e-31
+      e23: -9.658298e-31
       e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
+      e31: 1.11e-43
+      e32: 1.11e-43
+      e33: 1.11e-43
   m_TileColorArray:
-  - m_RefCount: 2
-    m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: 1.13146e-40, g: 1.13146e-40, b: 1.13146e-40, a: 1.13146e-40}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -177,9 +157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   open: 1
-  turnOffOnOpen:
-  - {fileID: 4372130715172379052}
-  renderer: {fileID: 4372130715172379051}
 --- !u!19719996 &4372130715172379052
 TilemapCollider2D:
   m_ObjectHideFlags: 0
