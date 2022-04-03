@@ -16,12 +16,16 @@ public abstract class Enemy : MonoBehaviour
     public bool canMoveWhileCharging;
     public float moveSpeedInit = 3f;
     public List<Mark> activeMarks;
+    public float pushForce;
+    public float pushRadius;
 
     public float moveSpeed = 3f;
     [HideInInspector]
     public bool isDying;
     protected AIDestinationSetter _setter;
     protected AIPath _aiPath;
+    protected BoxCollider2D _bc;
+    [SerializeField]
     protected SpriteRenderer _markedSR;
     protected bool chargingUp;
     
@@ -36,7 +40,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _setter = GetComponent<AIDestinationSetter>();
         _aiPath = GetComponent<AIPath>();
-        
+        _bc = GetComponent<BoxCollider2D>();
         _markedSR = GetComponentsInChildren<SpriteRenderer>()[1];
         SetSpeed(moveSpeed);
         activeMarks = new List<Mark>();
@@ -47,6 +51,15 @@ public abstract class Enemy : MonoBehaviour
         if (embeddedWeapon)
             embeddedWeapon.position = embeddedWeaponOffset + transform.position;
         _markedSR.enabled = activeMarks.Count > 0;
+        
+        //Soft push
+        var collions = Physics2D.OverlapBoxAll(transform.position, _bc.size, 0);
+        foreach (var col in collions) 
+            if (col.CompareTag("Enemy") && col != _bc)
+            {
+                Push(col, pushForce);
+            }
+        
         SetAnimation();
     }
 
@@ -101,13 +114,14 @@ public abstract class Enemy : MonoBehaviour
     {
         // play death anim
         EnemyDied.Invoke(this);
+        _aiPath.canMove = false;
+        _aiPath.maxSpeed = 0;
+        canAttackTime = Mathf.Infinity;
         StartCoroutine(PlayDeathAnim(1f));
     }
 
     private IEnumerator PlayDeathAnim(float duration)
     {
-        _aiPath.canMove = false;
-        canAttackTime = Mathf.Infinity;
         Debug.Log("Dying");
         isDying = true;
         yield return new WaitForSeconds(duration);
@@ -123,18 +137,28 @@ public abstract class Enemy : MonoBehaviour
         StartCoroutine(mark.ApplyMark(this));
     }
 
+    private void Push(Collider2D entity, float force)
+    {
+        Debug.Log("Push");
+        Vector3 direction = (entity.transform.position - transform.position).normalized;
+        entity.transform.position += direction * force * Time.deltaTime;
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.TryGetComponent<Player>(out var player))
         {
-            if(embeddedWeapon)
-                player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
-            if (player.GetComponent<PlayerMovement>().IsDashing() && embeddedWeapon)
-                Die();
-            else
+            bool isDashing = player.GetComponent<PlayerMovement>().IsDashing();
+            if(!isDashing)
                 player.TakeDamage(1);
-            embeddedWeapon = null;
+            if (isDashing && embeddedWeapon)
+            {
+                player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
+                embeddedWeapon = null;
+                Die();
+            }
         }
+
     }
 
     protected abstract void SetAnimation();

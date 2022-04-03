@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5b080163dacce4c9150bbf7510f942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: 
+  enemyName: Ogre
   isMarked: 0
   damageAmount: 5
   attackInterval: 0.1
@@ -86,7 +86,10 @@ MonoBehaviour:
   canMoveWhileCharging: 0
   moveSpeedInit: 3
   activeMarks: []
+  pushForce: 0.2
+  pushRadius: 0
   moveSpeed: 3
   isDying: 0
+  _markedSR: {fileID: 0}
   attackRadius: 0.5
   attackRange: 0.5

@@ -22,9 +22,6 @@ public class WeaponHolder : MonoBehaviour
 
     public void PickUpWeapon(Weapon weapon)
     {
-        if (!weapon.CanPickUp())
-            return;
-        
         if(weapon == null || this.weapon )
             return;
         this.weapon = weapon;
@@ -49,8 +46,11 @@ public class WeaponHolder : MonoBehaviour
             foreach (var collider in collisions)
             {
                 if (collider.TryGetComponent<Weapon>(out var weapon))
-                    PickUpWeapon(weapon);
-                Debug.Log(collider);
+                {
+                    if(weapon.CanPickUp())
+                        PickUpWeapon(weapon);
+                }
+                // Debug.Log(collider);
             }
             return;
         }
