@@ -614,6 +614,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7525816726598275343, guid: c6a9bc2505768f642a799e0b270a9fc8, type: 3}
+      propertyPath: m_Time
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525816726598275343, guid: c6a9bc2505768f642a799e0b270a9fc8, type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7525816726598275343, guid: c6a9bc2505768f642a799e0b270a9fc8, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7675185524930247514, guid: c6a9bc2505768f642a799e0b270a9fc8, type: 3}
       propertyPath: m_Name
       value: Trail
