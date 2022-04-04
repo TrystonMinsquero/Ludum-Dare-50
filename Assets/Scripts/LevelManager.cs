@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+
+    public StartRoom AbsoluteStartRoom;
     public static LevelManager Instance { get; private set; }
     public static Player player;
     public static Weapon weapon;
@@ -43,14 +45,15 @@ public class LevelManager : MonoBehaviour
 
         if (_checkpoint)
         {
-            _checkpoint.Spawn(player.transform);
             foreach (var upgrade in _upgradesApplied)
             {
                 Upgrades.ApplyUpgrade(upgrade);
             }
         }
         else
-            _checkpoint = StartRoom.AbsoluteStartRoom;
+            SaveCheckpoint(AbsoluteStartRoom);
+        _checkpoint.Spawn(player.transform);
+        
     }
 
     private void OnUpgradeApplied(Upgrade upgrade)

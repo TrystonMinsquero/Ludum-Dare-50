@@ -20,7 +20,9 @@ public class StartRoom : Room
     {
         base.Awake();
         if (absoluteStart)
+        {
             AbsoluteStartRoom = this;
+        }
     }
 
     protected override void OnCompleteRoom()

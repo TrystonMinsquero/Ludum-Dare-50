@@ -8,6 +8,7 @@ public class GameOverUI : InGameScreen
 
     private void Awake()
     {
+        Time.timeScale = 1;
         if (Instance)
             Destroy(gameObject);
         else
@@ -26,11 +27,13 @@ public class GameOverUI : InGameScreen
     
     public void TryAgain()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Level 1");
     }
 
     public void Quit()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("StartMenu");
     }
 }
