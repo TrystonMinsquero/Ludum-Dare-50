@@ -140,6 +140,7 @@ public abstract class Enemy : MonoBehaviour
         canAttackTime = Mathf.Infinity;
         _bc.enabled = false;
         _markedSR.enabled = false;
+        StopAllCoroutines();
         StartCoroutine(PlayDeathAnim(1f));
     }
 
