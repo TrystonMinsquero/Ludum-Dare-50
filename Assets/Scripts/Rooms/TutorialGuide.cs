@@ -9,6 +9,7 @@ public class Line
 {
     [TextArea(1,3)]
     public string text;
+    [Min(.5f)]
     public float duration = 3f;
 }
 public class TutorialGuide : MonoBehaviour
