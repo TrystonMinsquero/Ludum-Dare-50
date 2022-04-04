@@ -14,18 +14,21 @@ public class MeleeEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if ( _aiPath.reachedDestination && !chargingUp && canAttackTime <= Time.time && _setter.target != null)
+        if ( _aiPath.reachedDestination && !chargingUp && !isAttacking && canAttackTime <= Time.time && _setter.target != null)
             StartCoroutine(ChargeUpThenAttack(chargeUpTime));
     }
 
     protected override IEnumerator Attack()
     {
-        slamAnim.SetActive(true);
-        slamAnim.GetComponent<Animator>().Play(enemyName + "Smash");
         if (_setter.target != null)
         {
             isAttacking = true;
             Vector3 attackPoint = (_setter.target.position - transform.position).normalized * attackRange;
+            
+            //Slam animation
+            slamAnim.transform.position = transform.position + attackPoint;
+            slamAnim.GetComponent<Animator>().Play(enemyName + "Slam");
+
             Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position + attackPoint, attackRadius);
             
             foreach(Collider2D collision in collisions)
