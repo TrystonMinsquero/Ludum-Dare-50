@@ -2404,11 +2404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4748293522208193716, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4748293522208193716, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 4748293522208193716, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14480,6 +14480,14 @@ PrefabInstance:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
+      propertyPath: SlowMark.upgradeDescription
+      value: Hitting an enemy slows them down.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
+      propertyPath: StunMark.upgradeDescription
+      value: Hitting an enemy shortly stuns them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: TimeOnKillUpgrade.upgradeName
       value: Lifesteal
       objectReference: {fileID: 0}
@@ -14490,6 +14498,18 @@ PrefabInstance:
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: DamageResistUpgrade.upgradeName
       value: Resist
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
+      propertyPath: SpeedUpgrade.upgradeDescription
+      value: You move faster.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
+      propertyPath: TimeOnKillUpgrade.upgradeDescription
+      value: Killing an enemy grants bonus time.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
+      propertyPath: DamageResistUpgrade.upgradeDescription
+      value: You take less damage from enemies.
       objectReference: {fileID: 0}
     - target: {fileID: 6269354474804106168, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: m_Name
@@ -103704,7 +103724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[0].text
@@ -103713,7 +103733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[1].text
-      value: Right Click to throw your axe and Left Click to Dash and WASD to move.
+      value: Right Click to throw your axe, Left Click to Dash and WASD to move.
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[2].text
@@ -103726,19 +103746,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[4].text
-      value: Also, that timer up there will kill you if it reaches zero... Clearing
-        rooms gives you more time though so try to be quick!
+      value: 'Also, that timer up there will kill you if it reaches zero... '
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[5].text
-      value: ...
+      value: Clearing rooms gives you more time but getting hit by enemies takes
+        away time.
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[6].text
-      value: ......
+      value: ...
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[7].text
+      value: ......
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
+      propertyPath: lines.Array.data[8].text
       value: .........
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
@@ -103763,7 +103787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[5].duration
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[6].duration
@@ -103771,6 +103795,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
       propertyPath: lines.Array.data[7].duration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613080729725014713, guid: 66f77995165dcde41a932e5036767a74, type: 3}
+      propertyPath: lines.Array.data[8].duration
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7243845116202760885, guid: 66f77995165dcde41a932e5036767a74, type: 3}
