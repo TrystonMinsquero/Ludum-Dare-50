@@ -185,7 +185,7 @@ public abstract class Enemy : MonoBehaviour
         if (col.TryGetComponent<Player>(out var player))
         {
             bool isDashing = player.GetComponent<PlayerMovement>().IsDashing();
-            if(!isDashing)
+            if(!isDashing && !(this as DummyEnemy))
                 player.TakeDamage(1);
             if (isDashing && embeddedWeapon)
             {
