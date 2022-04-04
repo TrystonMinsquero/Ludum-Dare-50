@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Upgrades : MonoBehaviour
@@ -20,9 +21,10 @@ public class Upgrades : MonoBehaviour
     public static event Action<Upgrade> UpgradeApplied = delegate(Upgrade upgrade) {  };
     private static Upgrade[] _upgrades;
 
-    private void Start()
+    private void Awake()
     {
         Populate();
+        // StartCoroutine(Test(2));
     }
 
     private void Populate()
@@ -36,6 +38,15 @@ public class Upgrades : MonoBehaviour
             DamageResistUpgrade
         };
         _upgrades = upgrades;
+    }
+
+    private IEnumerator Test(float time)
+    {
+        yield return new WaitForSeconds(time);
+        
+        ApplyUpgrade("speed");
+        ApplyUpgrade("stun mark");
+        ApplyUpgrade("slow mark");
     }
 
     public static void ApplyUpgrade(string upgradeName)
