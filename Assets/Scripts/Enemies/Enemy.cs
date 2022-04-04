@@ -132,6 +132,7 @@ public abstract class Enemy : MonoBehaviour
     public void HitByWeapon(Weapon weapon)
     {
         embeddedWeapon = weapon.transform;
+        _markedSR.enabled = true;
         embeddedWeaponOffset = (embeddedWeapon.position - transform.position);
         ReceiveMarks(weapon.marks);
     }

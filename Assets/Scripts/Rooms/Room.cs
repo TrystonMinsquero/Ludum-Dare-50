@@ -48,6 +48,7 @@ public abstract class Room : MonoBehaviour
 
     public void CompleteRoom()
     {
+        SFXManager.Play("Doors");
         foreach(Door door in doors)
             door.Open();
         SetLightsActive(true);

@@ -40,7 +40,7 @@ public class MeleeEnemy : Enemy
     private void OnDrawGizmosSelected()
     {
         Vector3 attackPoint;
-        if(_setter.target == null)
+        if(!_setter && _setter.target == null)
             attackPoint= ((transform.position + Vector3.right)).normalized * attackRange;
         else
             attackPoint = ((_setter.target.position - transform.position).normalized) * attackRange;

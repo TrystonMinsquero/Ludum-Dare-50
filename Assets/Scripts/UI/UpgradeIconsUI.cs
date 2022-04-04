@@ -23,9 +23,10 @@ public class UpgradeIconsUI : MonoBehaviour
     public void AddUpgrade(Upgrade upgrade)
     {
         // Debug.Log($"Add upgrade {upgrade.upgradeName}");
-        Vector3 pos = startPos.position + Vector3.right * currentIndex * widthIncrement;
+        Vector3 pos = startPos.position + Vector3.right * currentIndex * widthIncrement * 2;
         var image = Instantiate(iconPrefab, transform).GetComponent<Image>();
         image.transform.position = pos;
         image.sprite = upgrade.icon;
+        currentIndex++;
     }
 }
