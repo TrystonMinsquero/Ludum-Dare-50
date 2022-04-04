@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public int time = 120;
+    public int startTime = 120;
     public float TimeOfDeath { get; private set; }
 
 
@@ -17,10 +17,14 @@ public class Player : MonoBehaviour
     {
         TimeOfDeath += time;
     }
-    
+
+    public void SetTime(float time)
+    {
+        TimeOfDeath = Time.time + time;
+    }
 
     private void Start()
     {
-        TimeOfDeath = Time.time + time;
+        TimeOfDeath = Time.time + startTime;
     }
 }

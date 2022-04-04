@@ -30,15 +30,6 @@ public abstract class Room : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if(!completed)
-            if (enemies == null || enemies.Count <= 0)
-            {
-                CompleteRoom();
-            }
-    }
-
     protected void CheckForRoomCompletion()
     {
         if(enemies == null || enemies.Count <= 0)
@@ -66,6 +57,10 @@ public abstract class Room : MonoBehaviour
     }
 
     protected abstract void OnCompleteRoom();
+
+    protected virtual void OnEnterRoom()
+    {
+    }
 
     public void Awake()
     {
