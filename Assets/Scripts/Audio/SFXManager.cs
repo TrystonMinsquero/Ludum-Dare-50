@@ -29,7 +29,7 @@ public class SFXManager : MonoBehaviour
     public static void Play (string name)
     {
         Sound s = Array.Find(instance.sounds, sound => sound.name == name);
-        if (s == null)
+        if (s != null)
             s.source.Play();
         else 
             Debug.LogWarning($"Could not find {name} in sounds");

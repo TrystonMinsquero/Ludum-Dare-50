@@ -8,6 +8,7 @@ public class MeleeEnemy : Enemy
     [Header("Melee")]
     public float attackRadius = .5f;
     public float attackRange = .5f;
+    public GameObject slamAnim;
 
     
     protected override void Update()
@@ -19,6 +20,8 @@ public class MeleeEnemy : Enemy
 
     protected override IEnumerator Attack()
     {
+        slamAnim.SetActive(true);
+        slamAnim.GetComponent<Animator>().Play(enemyName + "Smash");
         if (_setter.target != null)
         {
             isAttacking = true;

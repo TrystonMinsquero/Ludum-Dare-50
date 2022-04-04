@@ -33,6 +33,7 @@ public class Weapon : MonoBehaviour
     public void Throw(Vector2 direction)
     {
         Debug.Log("Throw weapon!");
+        SFXManager.Play("Throw");
         canPickUp = false;
         StartCoroutine(Throwing(direction));
     }
