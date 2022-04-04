@@ -63,6 +63,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Melee Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8730028793823294965, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: height
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730028793823294965, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: radius
+      value: 0.64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
 --- !u!1 &532406949836269091 stripped
@@ -94,9 +102,7 @@ MonoBehaviour:
   chargeUpTime: 0.2
   canMoveWhileCharging: 0
   moveSpeedInit: 3
-  activeMarks: []
   pushForce: 0.2
-  pushRadius: 0
   moveSpeed: 3
   isDying: 0
   _markedSR: {fileID: 3236309110002938063}

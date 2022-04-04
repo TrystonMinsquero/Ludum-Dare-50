@@ -52,7 +52,11 @@ public class PlayerMovement : MonoBehaviour
         float maxDashTime = dashTimeBuffer; //Estimated
         float timeStarted = Time.time;
         while ((transform.position - startPos).magnitude < targetDashDistance && Time.time - timeStarted < maxDashTime)
+        {
+            lookDirection = _rb.velocity.normalized;
             yield return null;
+        }
+        
         EndDash();
         // Use this debugging for testing
         // Debug.Log("Actual Time: " + (Time.time - timeStarted));
@@ -91,18 +95,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    public Vector2 GetDirectionVector() {
+    public Vector2 GetDirectionVector(Vector2 v) {
+        v.Normalize();
+        var x = (Mathf.Abs(v.x) > 0.5f) ? Mathf.Sign(v.x) : 0;
+        var y = (Mathf.Abs(v.y) > 0.5f) ? Mathf.Sign(v.y) : 0;
+        return new Vector2(x, y);
+    }
+    
+    public Vector2 GetDirectionVector()
+    {
         var v = lookDirection.normalized;
         var x = (Mathf.Abs(v.x) > 0.5f) ? Mathf.Sign(v.x) : 0;
         var y = (Mathf.Abs(v.y) > 0.5f) ? Mathf.Sign(v.y) : 0;
         return new Vector2(x, y);
     }
 
-    public Direction GetDirection()
+    private Direction GetDirectionFromVector(Vector2 v)
     {
-
-        Vector2 v = GetDirectionVector();
-        // Debug.Log(v);
+        v = GetDirectionVector(v);
         switch (v.x)
         {
             case 0:
@@ -127,14 +137,16 @@ public class PlayerMovement : MonoBehaviour
                     return Direction.DOWN_LEFT;
                 return Direction.LEFT;
                 break;
-                
-                    
         }
         Debug.LogWarning($"{v} could not be converted to a direction");
         return Direction.DOWN;
-        // Debug.Log($"dir: {lookDirection} goes to {(Direction) (closestIndex)}" );
+    }
 
-        // return (Direction) (closestIndex);
+    public Direction GetDirection()
+    {
+
+        Vector2 v = GetDirectionVector(lookDirection.normalized);
+        return GetDirectionFromVector(v);
     }
 
     private void Update()

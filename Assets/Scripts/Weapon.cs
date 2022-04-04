@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     public Sprite heldImage;
     public Sprite thrownImage;
 
+    private bool isEmbedded;
     private bool isInMotion;
     private bool canPickUp;
     private Rigidbody2D _rb;
@@ -45,6 +46,12 @@ public class Weapon : MonoBehaviour
             yield return null;
         }
     }
+    public void Drop()
+    {
+        isEmbedded = false;
+        canPickUp = true;
+        isInMotion = false;
+    }
 
     private void StopThrow()
     {
@@ -55,8 +62,6 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!isInMotion)
-            return;
         if(canPickUp && other.CompareTag("Player"))
         {
             Debug.Log("Pick up");
@@ -65,6 +70,10 @@ public class Weapon : MonoBehaviour
             else
                 Debug.LogWarning("WTF");
         }
+        
+        if(!isInMotion)
+            return;
+        
         if (other.CompareTag("Wall"))
         {
             canPickUp = true;
@@ -74,8 +83,11 @@ public class Weapon : MonoBehaviour
         {
             StopThrow();
             enemy.HitByWeapon(this);
+            isEmbedded = true;
         }
     }
 
     public bool CanPickUp() => canPickUp;
+    public bool IsEmbedded() => isEmbedded;
+    public bool IsInMotion() => isInMotion;
 }
