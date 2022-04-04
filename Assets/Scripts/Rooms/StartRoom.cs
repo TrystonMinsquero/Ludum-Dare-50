@@ -35,8 +35,8 @@ public class StartRoom : Room
             LevelManager.player.SetTime(LevelManager.player.startTime);
     }
 
-    public void Spawn(Player player)
+    public void Spawn(Transform player)
     {
-        player.transform.position = spawnPoint.position;
+        player.position = spawnPoint.position;
     }
 }

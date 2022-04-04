@@ -140,6 +140,7 @@ public abstract class Enemy : MonoBehaviour
         canAttackTime = Mathf.Infinity;
         _bc.enabled = false;
         _markedSR.enabled = false;
+        StopAllCoroutines();
         StartCoroutine(PlayDeathAnim(1f));
     }
 
@@ -184,7 +185,7 @@ public abstract class Enemy : MonoBehaviour
         if (col.TryGetComponent<Player>(out var player))
         {
             bool isDashing = player.GetComponent<PlayerMovement>().IsDashing();
-            if(!isDashing)
+            if(!isDashing && !(this as DummyEnemy))
                 player.TakeDamage(1);
             if (isDashing && embeddedWeapon)
             {
