@@ -4,9 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Mark : Upgrade
 {
-    public string name;
     public float duration;
-    public bool isActive;
+    public bool IsActive { get; protected set; }
 
     public Mark(float duration)
     {
@@ -19,12 +18,12 @@ public abstract class Mark : Upgrade
 
     public virtual IEnumerator ApplyMark(Enemy enemy)
     {
-        isActive = true;
+        IsActive = true;
         yield return new WaitForSeconds(duration);
-        isActive = false;
+        IsActive = false;
     }
 
-    public void ApplyUpgrade()
+    public override void ApplyUpgrade()
     {
         LevelManager.weapon.marks.Add(this);
     }

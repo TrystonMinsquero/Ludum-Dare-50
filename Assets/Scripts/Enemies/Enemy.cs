@@ -30,6 +30,7 @@ public abstract class Enemy : MonoBehaviour
     protected SpriteRenderer _markedSR;
     protected bool chargingUp;
     protected bool isAttacking;
+    protected bool isStunned;
     
     public event Action<Enemy> EnemyDied = delegate(Enemy enemy) {  };
 
@@ -48,15 +49,11 @@ public abstract class Enemy : MonoBehaviour
         SetSpeed(moveSpeed);
         activeMarks = new List<Mark>();
     }
-    
-    // protected virtual void Start()
-    // {
-    // }
 
     protected virtual void Update()
     {
         SetAnimation();
-        if(isDying)
+        if(isDying || isStunned)
             return;
         
         if (embeddedWeapon)
@@ -74,7 +71,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected IEnumerator ChargeUpThenAttack(float time)
     {
-        // Debug.Log($"{name} Charging Up!");
+        Debug.Log($"{name} Charging Up!");
         chargingUp = true;
         Vector3 pos = transform.position;
 
@@ -89,8 +86,8 @@ public abstract class Enemy : MonoBehaviour
             }
             yield return null;
         }
-        StartCoroutine(Attack());
         chargingUp = false;
+        StartCoroutine(nameof(Attack));
     }
 
     public void SetTarget(Transform target)
@@ -104,8 +101,10 @@ public abstract class Enemy : MonoBehaviour
     protected void EndAttack()
     {
         
-        // Debug.Log($"{name} Attacked!");
+        Debug.Log($"{name} Attacked!");
         canAttackTime = Time.time + attackInterval;
+        isAttacking = false;
+        chargingUp = false;
         _aiPath.canMove = true;
         _aiPath.maxSpeed = moveSpeed;
     }
@@ -114,11 +113,28 @@ public abstract class Enemy : MonoBehaviour
     {
         moveSpeed = speed;
         _aiPath.maxSpeed = speed;
+        _anim.speed = speed / moveSpeed;
+
+    }
+
+    public void Stun()
+    {
+        isStunned = true;
+        _aiPath.canMove = false;
+        _aiPath.maxSpeed = 0;
+        StopAllCoroutines();
+    }
+    public void UnStun()
+    {
+        isStunned = false;
+        _aiPath.canMove = true;
+        _aiPath.maxSpeed = moveSpeed;
     }
 
     public void HitByWeapon(Weapon weapon)
     {
         embeddedWeapon = weapon.transform;
+        _markedSR.enabled = true;
         embeddedWeaponOffset = (embeddedWeapon.position - transform.position);
         ReceiveMarks(weapon.marks);
     }
@@ -163,7 +179,6 @@ public abstract class Enemy : MonoBehaviour
     public void ReceiveMark(Mark mark)
     {
         activeMarks.Add(mark);
-        mark.isActive = true;
         StartCoroutine(mark.ApplyMark(this));
     }
 
@@ -190,6 +205,7 @@ public abstract class Enemy : MonoBehaviour
             if (isDashing && embeddedWeapon)
             {
                 player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
+                player.AddTime(player.timeOnKill);
                 embeddedWeapon = null;
                 Die();
             }

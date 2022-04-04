@@ -8,13 +8,18 @@ public class MeleeEnemy : Enemy
     [Header("Melee")]
     public float attackRadius = .5f;
     public float attackRange = .5f;
+    public GameObject slamAnim;
 
     
     protected override void Update()
     {
         base.Update();
-        if ( _aiPath.reachedDestination && !chargingUp && canAttackTime <= Time.time && _setter.target != null)
+        if (_aiPath.reachedDestination && !chargingUp && !isAttacking && canAttackTime <= Time.time &&
+            _setter.target != null)
+        {
+            
             StartCoroutine(ChargeUpThenAttack(chargeUpTime));
+        }
     }
 
     protected override IEnumerator Attack()
@@ -23,6 +28,11 @@ public class MeleeEnemy : Enemy
         {
             isAttacking = true;
             Vector3 attackPoint = (_setter.target.position - transform.position).normalized * attackRange;
+            
+            //Slam animation
+            slamAnim.transform.position = transform.position + attackPoint;
+            slamAnim.GetComponent<Animator>().Play(enemyName + "Slam");
+
             Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position + attackPoint, attackRadius);
             
             foreach(Collider2D collision in collisions)
@@ -40,7 +50,7 @@ public class MeleeEnemy : Enemy
     private void OnDrawGizmosSelected()
     {
         Vector3 attackPoint;
-        if(_setter.target == null)
+        if(!_setter && _setter.target == null)
             attackPoint= ((transform.position + Vector3.right)).normalized * attackRange;
         else
             attackPoint = ((_setter.target.position - transform.position).normalized) * attackRange;

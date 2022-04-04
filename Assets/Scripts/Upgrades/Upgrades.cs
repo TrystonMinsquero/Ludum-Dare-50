@@ -1,21 +1,7 @@
 ﻿
 using System;
+using System.Collections;
 using UnityEngine;
-
-public enum upgradeType
-{
-    Mark,
-    Player
-}
-
-[Serializable][CreateAssetMenu(fileName = "Upgrade")]
-public class UpgradeObject : ScriptableObject
-{
-    public string upgradeName;
-    public Upgrade upgrade;
-    public Sprite image;
-
-}
 
 public class Upgrades : MonoBehaviour
 {
@@ -23,22 +9,58 @@ public class Upgrades : MonoBehaviour
     public Upgrade[] upgrades;
 
     [Header("Marks")]
-    public BasicMark BasicMark;
     public SlowMark SlowMark;
     public StunMark StunMark;
 
     [Header("PlayerUpgrades")] 
     public SpeedUpgrade SpeedUpgrade;
 
+    public TimeOnKillUpgrade TimeOnKillUpgrade;
+    public DamageResistUpgrade DamageResistUpgrade;
+    
+    public static event Action<Upgrade> UpgradeApplied = delegate(Upgrade upgrade) {  };
+    private static Upgrade[] _upgrades;
+
+    private void Awake()
+    {
+        Populate();
+        // StartCoroutine(Test(2));
+    }
+
     private void Populate()
     {
         upgrades = new Upgrade[]
         {
-            BasicMark,
             SlowMark,
             StunMark,
-            SpeedUpgrade
+            SpeedUpgrade,
+            TimeOnKillUpgrade,
+            DamageResistUpgrade
         };
+        _upgrades = upgrades;
+    }
+
+    private IEnumerator Test(float time)
+    {
+        yield return new WaitForSeconds(time);
+        
+        ApplyUpgrade("speed");
+        ApplyUpgrade("stun mark");
+        ApplyUpgrade("slow mark");
+    }
+
+    public static void ApplyUpgrade(string upgradeName)
+    {
+        foreach(Upgrade upgrade in _upgrades)
+            if (upgradeName.ToLower() == upgrade.upgradeName.ToLower())
+            {
+                upgrade.ApplyUpgrade();
+                UpgradeApplied.Invoke(upgrade);
+                Debug.Log($"Applied {upgradeName}");
+                return;
+            }
+
+        Debug.Log("upgrade name not found");
     }
     
 }
