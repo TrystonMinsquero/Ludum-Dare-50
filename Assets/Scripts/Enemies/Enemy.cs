@@ -48,6 +48,7 @@ public abstract class Enemy : MonoBehaviour
         _anim = GetComponent<Animator>();
         SetSpeed(moveSpeed);
         activeMarks = new List<Mark>();
+        moveSpeed = moveSpeedInit;
     }
 
     protected virtual void Update()
