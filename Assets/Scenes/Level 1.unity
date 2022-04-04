@@ -95014,7 +95014,7 @@ MonoBehaviour:
   - {fileID: 1430803887}
   - {fileID: 922821541}
   completed: 0
-  upgradeName: Slow Mark
+  upgradeName: Stun Mark
 --- !u!1 &1390073719
 GameObject:
   m_ObjectHideFlags: 0
