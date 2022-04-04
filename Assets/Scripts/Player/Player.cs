@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -29,5 +30,19 @@ public class Player : MonoBehaviour
     private void Start()
     {
         TimeOfDeath = Time.time + startTime;
+    }
+
+    public void Die()
+    {
+        
+    }
+
+    private void Update()
+    {
+        if (Time.time >= TimeOfDeath)
+        {
+            Die();
+        }
+            
     }
 }

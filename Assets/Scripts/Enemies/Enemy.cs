@@ -18,7 +18,7 @@ public abstract class Enemy : MonoBehaviour
     public List<Mark> activeMarks;
     public float pushForce;
 
-    public float moveSpeed = 3f;
+    protected float moveSpeed = 3f;
     [HideInInspector]
     public bool isDying;
     protected AIDestinationSetter _setter;
