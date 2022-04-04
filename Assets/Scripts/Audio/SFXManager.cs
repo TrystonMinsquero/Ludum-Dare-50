@@ -5,8 +5,12 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     public static SFXManager instance;
+    
+    [Range(-.05f, 1)]
+    public float globalVolume;
 
     public Sound[] sounds;
+
 
     void Awake()
     {
@@ -20,8 +24,7 @@ public class SFXManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-
-            s.source.volume = s.volume;
+            s.source.volume = globalVolume < 0 ? s.volume : globalVolume;
             s.source.pitch = s.pitch;
         }
     }

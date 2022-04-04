@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4391959344307754455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2551852787412899412}
+    m_Modifications:
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.648
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.803
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178773192808513575, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1285820414435870172, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+      propertyPath: m_Name
+      value: ogreSmash
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+--- !u!1 &3254828315765018635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1285820414435870172, guid: 510f38adff06c774e8d694898c94cd08, type: 3}
+  m_PrefabInstance: {fileID: 4391959344307754455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5082452089290197637
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73,13 +135,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7341570703352896748, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
       propertyPath: m_Name
-      value: Melee Enemy (2)
+      value: Melee Enemy Tier 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
 --- !u!1 &2551852787412899433 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7341570703352896748, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+  m_PrefabInstance: {fileID: 5082452089290197637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2551852787412899412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
   m_PrefabInstance: {fileID: 5082452089290197637}
   m_PrefabAsset: {fileID: 0}
 --- !u!212 &639740012827721861 stripped
@@ -112,3 +179,4 @@ MonoBehaviour:
   _markedSR: {fileID: 639740012827721861}
   attackRadius: 0.5
   attackRange: 0.5
+  slamAnim: {fileID: 3254828315765018635}
