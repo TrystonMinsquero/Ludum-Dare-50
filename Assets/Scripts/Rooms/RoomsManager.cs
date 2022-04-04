@@ -40,8 +40,13 @@ public class RoomsManager : MonoBehaviour
         activeRoom = newActiveRoom;
         if(!newActiveRoom.completed) 
             foreach (var room in rooms)
-                if(room != newActiveRoom)
+                if (room != newActiveRoom)
+                {
                     room.SetLightsActive(false);
+                    var startRoom = room as StartRoom;
+                    if(startRoom)
+                        startRoom.guide.ShutUp();
+                }
     }
 
     public void CompleteRoom(Room room)
