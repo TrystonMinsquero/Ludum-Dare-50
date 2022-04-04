@@ -46,9 +46,8 @@ public abstract class Enemy : MonoBehaviour
         _bc = GetComponent<BoxCollider2D>();
         _sr = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
-        SetSpeed(moveSpeed);
+        SetSpeed(moveSpeedInit);
         activeMarks = new List<Mark>();
-        moveSpeed = moveSpeedInit;
     }
 
     protected virtual void Update()
