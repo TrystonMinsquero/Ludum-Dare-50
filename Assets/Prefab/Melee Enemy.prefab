@@ -98,8 +98,8 @@ MonoBehaviour:
   enemyName: ogre
   isMarked: 0
   damageAmount: 8
-  attackInterval: 0.1
-  chargeUpTime: 0.2
+  attackInterval: 1
+  chargeUpTime: 0.5
   canMoveWhileCharging: 0
   moveSpeedInit: 3
   pushForce: 0.2
