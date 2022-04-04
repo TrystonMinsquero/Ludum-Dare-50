@@ -74,6 +74,7 @@ public abstract class Enemy : MonoBehaviour
         Debug.Log($"{name} Charging Up!");
         chargingUp = true;
         Vector3 pos = transform.position;
+        canAttackTime = Time.time + time;
 
         float endTime = Time.time + time;
         while (Time.time < endTime)
@@ -122,7 +123,9 @@ public abstract class Enemy : MonoBehaviour
         isStunned = true;
         _aiPath.canMove = false;
         _aiPath.maxSpeed = 0;
-        StopAllCoroutines();
+        StopCoroutine(nameof(Attack));
+        StopCoroutine(nameof(ChargeUpThenAttack));
+        EndAttack();
     }
     public void UnStun()
     {

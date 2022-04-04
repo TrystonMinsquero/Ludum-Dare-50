@@ -178,5 +178,5 @@ MonoBehaviour:
   isDying: 0
   _markedSR: {fileID: 639740012827721861}
   attackRadius: 0.5
-  attackRange: 0.5
+  attackRange: 1
   slamAnim: {fileID: 4219996564449602477}

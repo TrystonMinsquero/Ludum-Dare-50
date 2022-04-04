@@ -17,7 +17,7 @@ public class MeleeEnemy : Enemy
         if (_aiPath.reachedDestination && !chargingUp && !isAttacking && canAttackTime <= Time.time &&
             _setter.target != null)
         {
-            
+            chargingUp = true;
             StartCoroutine(ChargeUpThenAttack(chargeUpTime));
         }
     }
@@ -42,9 +42,9 @@ public class MeleeEnemy : Enemy
                     break;
                 }
         }
-        isAttacking = false;
-        yield return null;
+
         EndAttack();
+        yield return null;
     }
 
     private void OnDrawGizmosSelected()
@@ -70,6 +70,8 @@ public class MeleeEnemy : Enemy
         if (isDying)
             stateName += "Death";
         else if (chargingUp)
+            stateName += "Charge";
+        else if (isAttacking)
             stateName += "Attack";
         else if (_aiPath.velocity.magnitude > .05f)
             stateName += "Walk";
