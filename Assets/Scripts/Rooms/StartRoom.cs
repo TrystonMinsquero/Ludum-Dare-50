@@ -33,12 +33,14 @@ public class StartRoom : Room
     protected override void OnEnterRoom()
     {
         base.OnEnterRoom();
-        MusicManager.Play(songName);
         // Debug.Log("Entered start room");
         if(guide)
             guide.Speak();
-        if(!leftRoom)
+        if (!leftRoom)
+        {
             StartRoomEntered.Invoke(this);
+            MusicManager.Play(songName);
+        }
     }
 
     private void Update()
