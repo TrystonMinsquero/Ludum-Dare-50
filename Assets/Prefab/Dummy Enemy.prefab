@@ -119,7 +119,7 @@ MonoBehaviour:
   isMarked: 0
   damageAmount: 0
   attackInterval: 0.1
-  chargeUpTime: 0
+  chargeUpTime: 1
   canMoveWhileCharging: 0
   moveSpeedInit: 0
   pushForce: 0

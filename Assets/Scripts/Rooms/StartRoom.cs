@@ -9,6 +9,7 @@ public class StartRoom : Room
     public Transform spawnPoint;
     public bool absoluteStart;
     public TutorialGuide guide;
+    public string songName;
 
     private bool leftRoom;
 
@@ -22,6 +23,7 @@ public class StartRoom : Room
     protected override void OnEnterRoom()
     {
         base.OnEnterRoom();
+        MusicManager.Play(songName);
         // Debug.Log("Entered start room");
         if(guide)
             guide.Speak();
