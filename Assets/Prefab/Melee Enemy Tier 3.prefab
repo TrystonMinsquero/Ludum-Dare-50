@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5082452089290197637
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3741364559321919762, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896720, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1560392478917757310, guid: 8c30cdbe1f9230f4b9fac5566625302b, type: 3}
+    - target: {fileID: 7341570703352896720, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Color.b
+      value: 0.504717
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896720, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5101005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896720, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896748, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Name
+      value: Melee Enemy (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+--- !u!1 &2551852787412899433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7341570703352896748, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+  m_PrefabInstance: {fileID: 5082452089290197637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &639740012827721861 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5649958257652320768, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+  m_PrefabInstance: {fileID: 5082452089290197637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4001585034439581288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2551852787412899433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5b080163dacce4c9150bbf7510f942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: ogre
+  isMarked: 0
+  damageAmount: 8
+  attackInterval: 0.1
+  chargeUpTime: 0.2
+  canMoveWhileCharging: 0
+  moveSpeedInit: 7
+  pushForce: 0.2
+  moveSpeed: 3
+  isDying: 0
+  _markedSR: {fileID: 639740012827721861}
+  attackRadius: 0.5
+  attackRange: 0.5
