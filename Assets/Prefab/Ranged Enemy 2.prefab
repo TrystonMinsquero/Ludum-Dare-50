@@ -41,6 +41,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -6386336045141694100, guid: 5af68f43e45cb824c8ef2c46c2dc18ca, type: 3}
+    - target: {fileID: 7341570703352896720, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896720, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Color.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341570703352896720, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4117647
+      objectReference: {fileID: 0}
     - target: {fileID: 7341570703352896721, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -87,7 +99,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7341570703352896748, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
       propertyPath: m_Name
-      value: Ranged Enemy
+      value: Ranged Enemy 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
@@ -125,7 +137,6 @@ MonoBehaviour:
   chargeUpTime: 1
   canMoveWhileCharging: 0
   moveSpeedInit: 3
-  activeMarks: []
   pushForce: 0.15
   moveSpeed: 3
   isDying: 0
