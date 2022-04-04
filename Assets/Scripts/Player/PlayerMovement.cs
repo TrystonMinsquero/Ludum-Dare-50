@@ -17,7 +17,7 @@ public enum Direction
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] public float moveSpeed = 10f;
 
     [Header("Dash Settings")] 
     public float dashDelay = .2f;

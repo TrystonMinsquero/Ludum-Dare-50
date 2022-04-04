@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-public class Room : MonoBehaviour
+public abstract class Room : MonoBehaviour
 {
     public List<Enemy> enemies;
     public Door[] doors;
@@ -65,6 +65,8 @@ public class Room : MonoBehaviour
         CompletedRoom.Invoke(this);
     }
 
+    protected abstract void OnCompleteRoom();
+
     public void Awake()
     {
         _lights = GetComponentsInChildren<Light2D>();
@@ -80,6 +82,14 @@ public class Room : MonoBehaviour
         CheckForRoomCompletion();
         if(!completed)
             SetLightsActive(false);
+    }
+
+    private void EnterRoom(WeaponHolder player)
+    {
+        if(!player.weapon)
+            player.PickUpWeapon(LevelManager.weapon);
+        EnteredRoom.Invoke(this);
+        TurnOn(player.transform);
     }
 
     private void OnTriggerEnter2D(Collider2D col)

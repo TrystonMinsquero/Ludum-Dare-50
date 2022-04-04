@@ -112,6 +112,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
+        moveSpeed = speed;
         _aiPath.maxSpeed = speed;
     }
 

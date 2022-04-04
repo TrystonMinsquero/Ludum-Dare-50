@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        marks = new List<Mark>() {new Mark()};
+        marks = new List<Mark>() {new BasicMark()};
     }
 
     public void SetRotation(Vector2 lookDir)

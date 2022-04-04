@@ -9,8 +9,4 @@ public class Marks : MonoBehaviour
     [SerializeField]
     public List<Mark> marks;
 
-    private void Start()
-    {
-        
-    }
 }
