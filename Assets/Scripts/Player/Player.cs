@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log($"Took {damage} damage");
         TimeOfDeath -= damage;
     }
 

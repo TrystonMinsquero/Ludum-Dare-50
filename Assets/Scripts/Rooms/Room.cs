@@ -94,11 +94,9 @@ public abstract class Room : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player"))
+        if (col.TryGetComponent<WeaponHolder>(out var player))
         {
-            Debug.Log($"{name} Entered");
-            EnteredRoom.Invoke(this);
-            TurnOn(col.transform);
+            EnterRoom(player);
         }
     }
 
