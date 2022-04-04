@@ -6,23 +6,35 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
-    public StartRoom AbsoluteStartRoom;
+    public static StartRoom[] startRooms;
     public static LevelManager Instance { get; private set; }
     public static Player player;
     public static Weapon weapon;
 
     private static StartRoom _checkpoint;
-    public static List<Upgrade> upgradesApplied;
+    private List<Upgrade> _upgradesAppliedCurrently;
     private static Upgrade[] _upgradesApplied;
 
     private void Awake()
     {
-        if (Instance)
-            Destroy(gameObject);
-        else
-            Instance = this;
-        upgradesApplied = new List<Upgrade>();
+        // if (Instance)
+        //     Destroy(gameObject);
+        // else
+        //     Instance = this;
+        
+        _upgradesAppliedCurrently = new List<Upgrade>();
+        
+
+        if(startRooms == null)
+            startRooms = FindObjectsOfType<StartRoom>();
+
+        if (!_checkpoint)
+        {
+            foreach(var room in startRooms)
+                if (room.absoluteStart)
+                    _checkpoint = room;
+            _upgradesApplied = new Upgrade[0];
+        }
 
     }
 
@@ -38,32 +50,46 @@ public class LevelManager : MonoBehaviour
         StartRoom.StartRoomEntered -= SaveCheckpoint;
     }
 
+    private void LoadCheckpoint()
+    {
+        Debug.Log("Load called");
+        foreach (var upgrade in _upgradesApplied)
+        {
+            Upgrades.ApplyUpgrade(upgrade);
+        }
+        Debug.Log(player);
+        _checkpoint?.Spawn(player.transform);
+    }
+
     private void Start()
     {
-        player = GameObject.FindObjectOfType<Player>();
-        weapon = GameObject.FindObjectOfType<Weapon>();
-
-        if (_checkpoint)
-        {
-            foreach (var upgrade in _upgradesApplied)
-            {
-                Upgrades.ApplyUpgrade(upgrade);
-            }
-        }
-        else
-            SaveCheckpoint(AbsoluteStartRoom);
-        _checkpoint.Spawn(player.transform);
+        Debug.Log("Start called");
+        player = FindObjectOfType<Player>();
+        weapon = FindObjectOfType<Weapon>();
+        LoadCheckpoint();
         
     }
 
     private void OnUpgradeApplied(Upgrade upgrade)
     {
-        upgradesApplied.Add(upgrade);
+        _upgradesAppliedCurrently.Add(upgrade);
     }
 
-    private void SaveCheckpoint(StartRoom startRoom)
+    public static void SaveCheckpoint(StartRoom startRoom)
     {
-        _checkpoint = startRoom;
-        _upgradesApplied = upgradesApplied.ToArray();
+        
+        //Debug.Log($"Saved progress to {startRoom} from {startRoom.transform.parent.name}");
+        _checkpoint = GetStartRoom(startRoom);
+        _upgradesApplied = Instance._upgradesAppliedCurrently.ToArray();
+    }
+
+    private static StartRoom GetStartRoom(StartRoom startRoom)
+    {
+        StartRoom _room = null;
+        foreach (var room in startRooms)
+            if (room.songName == startRoom.songName)
+                _room = room;
+
+        return _room;
     }
 }

@@ -14,16 +14,6 @@ public class StartRoom : Room
 
     private bool leftRoom;
     public static event Action<StartRoom> StartRoomEntered = delegate(StartRoom room) {  };
-    public static StartRoom AbsoluteStartRoom;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        if (absoluteStart)
-        {
-            AbsoluteStartRoom = this;
-        }
-    }
 
     protected override void OnCompleteRoom()
     {

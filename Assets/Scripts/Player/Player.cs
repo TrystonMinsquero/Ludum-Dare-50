@@ -1,20 +1,45 @@
 
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public int startTime = 120;
-    public float TimeOfDeath { get; private set; } = 100;
+    public float TimeOfDeath { get; private set; }
 
     public float damageModifer = 1f;
     public float timeOnKill = 0f;
 
+    public Color hitColor = Color.red;
+    public float invulnerabilityTimeAfterHit = .5f;
 
+    private bool _isInvulnerable;
+
+    private void Awake()
+    {
+        TimeOfDeath = 100; // for waiting, get overwritten
+    }
+
+    private IEnumerator BecomeInvulnerable(float time)
+    {
+        var sr = GetComponent < SpriteRenderer>();
+        _isInvulnerable = true;
+        Color prevColor = sr.color;
+        sr.color = hitColor;
+        yield return new WaitForSeconds(time);
+        sr.color = prevColor;
+        _isInvulnerable = false;
+    }
+    
     public void TakeDamage(float damage)
     {
-        Debug.Log($"Took {damage * damageModifer} damage");
-        TimeOfDeath -= damage * damageModifer;
+        if (!_isInvulnerable)
+        {
+            Debug.Log($"Took {damage * damageModifer} damage");
+            TimeOfDeath -= damage * damageModifer;
+            StartCoroutine(BecomeInvulnerable(invulnerabilityTimeAfterHit));
+        }
     }
 
     public void AddTime(float time)
@@ -29,7 +54,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        GameOverUI.ShowScreen();
+        SceneManager.LoadScene("GameOver");
     }
 
     private void Update()

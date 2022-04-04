@@ -36,7 +36,7 @@ public class MusicManager : MonoBehaviour
             // Add songs not in current manager
             AddNewSongs(songs, instance.globalVolume);
             
-            if (startingSongName != currentSong.name)
+            if (currentSong == null || startingSongName != currentSong.name)
             {
                 Play(startingSongName);
             }
