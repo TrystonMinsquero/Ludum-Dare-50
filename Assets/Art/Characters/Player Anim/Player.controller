@@ -34,7 +34,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: vikingDashUp
-  m_Speed: 1
+  m_Speed: 0.3428
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -190,7 +190,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: vikingDashDownSide
-  m_Speed: 1
+  m_Speed: 0.3428
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -216,7 +216,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: vikingDashUpSide
-  m_Speed: 1
+  m_Speed: 0.3428
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -290,7 +290,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: vikingDashSide
-  m_Speed: 1
+  m_Speed: 0.3428
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []
@@ -342,7 +342,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: vikingDashDown
-  m_Speed: 1
+  m_Speed: 0.3428
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

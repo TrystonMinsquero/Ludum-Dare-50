@@ -2,11 +2,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class StunMark : Mark
+[System.Serializable]
+public class SlowMark : Mark
 {
     public override IEnumerator ApplyMark(Enemy enemy)
     {
-        enemy.SetSpeed(0);
+        enemy.SetSpeed(enemy.moveSpeedInit / 2);
         isActive = true;
         yield return new WaitForSeconds(duration);
         enemy.SetSpeed(enemy.moveSpeedInit);

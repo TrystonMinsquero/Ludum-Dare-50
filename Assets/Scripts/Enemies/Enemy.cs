@@ -74,7 +74,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected IEnumerator ChargeUpThenAttack(float time)
     {
-        Debug.Log($"{name} Charging Up!");
+        // Debug.Log($"{name} Charging Up!");
         chargingUp = true;
         Vector3 pos = transform.position;
 
@@ -104,7 +104,7 @@ public abstract class Enemy : MonoBehaviour
     protected void EndAttack()
     {
         
-        Debug.Log($"{name} Attacked!");
+        // Debug.Log($"{name} Attacked!");
         canAttackTime = Time.time + attackInterval;
         _aiPath.canMove = true;
         _aiPath.maxSpeed = moveSpeed;
@@ -112,6 +112,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
+        moveSpeed = speed;
         _aiPath.maxSpeed = speed;
     }
 
@@ -144,7 +145,7 @@ public abstract class Enemy : MonoBehaviour
 
     private IEnumerator PlayDeathAnim(float duration)
     {
-        Debug.Log("Dying");
+        // Debug.Log("Dying");
         Vector3 pos = transform.position;
         isDying = true;
         float endTime = Time.time + duration;
@@ -153,7 +154,7 @@ public abstract class Enemy : MonoBehaviour
             transform.position = pos;
             yield return null;
         }
-        Debug.Log("Dead");
+        // Debug.Log("Dead");
         Destroy(gameObject);
         isDying = false;
     }
@@ -167,9 +168,15 @@ public abstract class Enemy : MonoBehaviour
 
     private void Push(Collider2D entity, float force)
     {
-        Debug.Log("Push");
+        // Debug.Log("Push");
         Vector3 direction = (entity.transform.position - transform.position).normalized;
         entity.transform.position += direction * force * Time.deltaTime;
+    }
+
+    public void DropWeapon()
+    {
+        embeddedWeapon.GetComponent<Weapon>().Drop();
+        embeddedWeapon = null;
     }
 
     private void OnTriggerEnter2D(Collider2D col)

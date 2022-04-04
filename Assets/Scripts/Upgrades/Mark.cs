@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-[Serializable]
-public class Mark
+[System.Serializable]
+public abstract class Mark : Upgrade
 {
     public string name;
     public float duration;
@@ -18,11 +17,15 @@ public class Mark
         this.duration = 3f;
     }
 
-
     public virtual IEnumerator ApplyMark(Enemy enemy)
     {
         isActive = true;
         yield return new WaitForSeconds(duration);
         isActive = false;
+    }
+
+    public void ApplyUpgrade()
+    {
+        LevelManager.weapon.marks.Add(this);
     }
 }

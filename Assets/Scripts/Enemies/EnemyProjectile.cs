@@ -35,7 +35,8 @@ public class EnemyProjectile : MonoBehaviour
     {
         if(col.CompareTag("Wall"))
             Destroy(gameObject);
-        if(col.CompareTag("Player"))
+        if (col.CompareTag("Player"))
+        {
             if (TryGetComponent<Player>(out var player))
             {
                 if (!player.GetComponent<PlayerMovement>().IsDashing())
@@ -44,5 +45,7 @@ public class EnemyProjectile : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+            
+        }
     }
 }

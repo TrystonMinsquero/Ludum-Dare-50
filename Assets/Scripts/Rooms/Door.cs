@@ -10,6 +10,8 @@ public class Door : MonoBehaviour
     public bool open;
     private Behaviour[] _turnOffOnOpen;
     private TilemapRenderer _renderer;
+    
+    
 
     public void Close()
     {
