@@ -44,4 +44,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingSongName: 
-  songs: []
+  songs:
+  - name: Level 1
+    clip: {fileID: 8300000, guid: 07954116511ffd840b2f78d00f1e79f7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Level 2
+    clip: {fileID: 8300000, guid: d3572a6f17adb024c81e3bd1ce7fb872, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Level 3
+    clip: {fileID: 8300000, guid: e15706ebdadb0704697029c3b8afcac4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Level 4
+    clip: {fileID: 8300000, guid: a973fcff1f508724b931d0953623a195, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Death
+    clip: {fileID: 8300000, guid: bd39ba73d8b221748b135ab27083855c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: 11c588f35d7145d46bb8757529365fb5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
