@@ -7,10 +7,10 @@ public class StunMark : Mark
 {
     public override IEnumerator ApplyMark(Enemy enemy)
     {
-        enemy.SetSpeed(0);
+        enemy.Stun();
         IsActive = true;
         yield return new WaitForSeconds(duration);
-        enemy.SetSpeed(enemy.moveSpeedInit);
+        enemy.UnStun();
         IsActive = false;
     }
 }

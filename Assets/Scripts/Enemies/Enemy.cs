@@ -30,6 +30,7 @@ public abstract class Enemy : MonoBehaviour
     protected SpriteRenderer _markedSR;
     protected bool chargingUp;
     protected bool isAttacking;
+    protected bool isStunned;
     
     public event Action<Enemy> EnemyDied = delegate(Enemy enemy) {  };
 
@@ -52,7 +53,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         SetAnimation();
-        if(isDying)
+        if(isDying || isStunned)
             return;
         
         if (embeddedWeapon)
@@ -110,6 +111,19 @@ public abstract class Enemy : MonoBehaviour
     {
         moveSpeed = speed;
         _aiPath.maxSpeed = speed;
+    }
+
+    public void Stun()
+    {
+        isStunned = true;
+        _aiPath.canMove = false;
+        _aiPath.maxSpeed = 0;
+    }
+    public void UnStun()
+    {
+        isStunned = false;
+        _aiPath.canMove = true;
+        _aiPath.maxSpeed = moveSpeed;
     }
 
     public void HitByWeapon(Weapon weapon)
