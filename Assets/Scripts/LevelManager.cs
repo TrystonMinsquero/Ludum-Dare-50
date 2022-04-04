@@ -17,24 +17,24 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        // if (Instance)
-        //     Destroy(gameObject);
-        // else
-        //     Instance = this;
+        if (Instance)
+            Destroy(gameObject);
+        else
+            Instance = this;
         
         _upgradesAppliedCurrently = new List<Upgrade>();
         
 
-        if(startRooms == null)
-            startRooms = FindObjectsOfType<StartRoom>();
+        startRooms = FindObjectsOfType<StartRoom>();
 
-        if (!_checkpoint)
-        {
-            foreach(var room in startRooms)
-                if (room.absoluteStart)
-                    _checkpoint = room;
-            _upgradesApplied = new Upgrade[0];
-        }
+        player = FindObjectOfType<Player>();
+        weapon = FindObjectOfType<Weapon>();
+        
+        
+        foreach(var room in startRooms)
+            if (room.absoluteStart)
+                room.Spawn(player.transform);
+        // _upgradesApplied = new Upgrade[0];
 
     }
 
@@ -52,6 +52,7 @@ public class LevelManager : MonoBehaviour
 
     private void LoadCheckpoint()
     {
+        return;
         Debug.Log("Load called");
         foreach (var upgrade in _upgradesApplied)
         {
@@ -64,8 +65,6 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("Start called");
-        player = FindObjectOfType<Player>();
-        weapon = FindObjectOfType<Weapon>();
         LoadCheckpoint();
         
     }
@@ -77,7 +76,7 @@ public class LevelManager : MonoBehaviour
 
     public static void SaveCheckpoint(StartRoom startRoom)
     {
-        
+        return;
         //Debug.Log($"Saved progress to {startRoom} from {startRoom.transform.parent.name}");
         _checkpoint = GetStartRoom(startRoom);
         _upgradesApplied = Instance._upgradesAppliedCurrently.ToArray();
