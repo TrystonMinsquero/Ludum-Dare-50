@@ -172,7 +172,7 @@ MonoBehaviour:
   attackInterval: 0.5
   chargeUpTime: 0.5
   canMoveWhileCharging: 0
-  moveSpeedInit: 6
+  moveSpeedInit: 5
   pushForce: 0.2
   moveSpeed: 7
   isDying: 0
