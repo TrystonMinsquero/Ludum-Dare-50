@@ -48,10 +48,6 @@ public abstract class Enemy : MonoBehaviour
         SetSpeed(moveSpeed);
         activeMarks = new List<Mark>();
     }
-    
-    // protected virtual void Start()
-    // {
-    // }
 
     protected virtual void Update()
     {
@@ -163,7 +159,6 @@ public abstract class Enemy : MonoBehaviour
     public void ReceiveMark(Mark mark)
     {
         activeMarks.Add(mark);
-        mark.isActive = true;
         StartCoroutine(mark.ApplyMark(this));
     }
 
@@ -190,6 +185,7 @@ public abstract class Enemy : MonoBehaviour
             if (isDashing && embeddedWeapon)
             {
                 player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
+                player.AddTime(player.timeOnKill);
                 embeddedWeapon = null;
                 Die();
             }

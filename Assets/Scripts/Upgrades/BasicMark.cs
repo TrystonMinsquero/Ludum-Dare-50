@@ -7,8 +7,8 @@ public class BasicMark : Mark
 {
     public override IEnumerator ApplyMark(Enemy enemy)
     {
-        isActive = true;
+        IsActive = true;
         yield return new WaitForSeconds(duration);
-        isActive = false;
+        IsActive = false;
     }
 }

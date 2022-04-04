@@ -8,9 +8,9 @@ public class StunMark : Mark
     public override IEnumerator ApplyMark(Enemy enemy)
     {
         enemy.SetSpeed(0);
-        isActive = true;
+        IsActive = true;
         yield return new WaitForSeconds(duration);
         enemy.SetSpeed(enemy.moveSpeedInit);
-        isActive = false;
+        IsActive = false;
     }
 }
