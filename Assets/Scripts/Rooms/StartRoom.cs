@@ -5,8 +5,6 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class StartRoom : Room
 {
-    [TextArea(2,4)]
-    public string tutorialText;
     public int timeAdded = 10;
     public Transform spawnPoint;
     public bool absoluteStart;
@@ -26,7 +24,7 @@ public class StartRoom : Room
         base.OnEnterRoom();
         // Debug.Log("Entered start room");
         if(guide)
-            guide.Say(tutorialText);
+            guide.Speak();
     }
 
     private void Update()

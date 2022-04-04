@@ -14,8 +14,12 @@ public class MeleeEnemy : Enemy
     protected override void Update()
     {
         base.Update();
-        if ( _aiPath.reachedDestination && !chargingUp && !isAttacking && canAttackTime <= Time.time && _setter.target != null)
+        if (_aiPath.reachedDestination && !chargingUp && !isAttacking && canAttackTime <= Time.time &&
+            _setter.target != null)
+        {
+            
             StartCoroutine(ChargeUpThenAttack(chargeUpTime));
+        }
     }
 
     protected override IEnumerator Attack()

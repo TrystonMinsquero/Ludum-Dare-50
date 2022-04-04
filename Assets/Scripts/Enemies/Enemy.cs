@@ -71,7 +71,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected IEnumerator ChargeUpThenAttack(float time)
     {
-        // Debug.Log($"{name} Charging Up!");
+        Debug.Log($"{name} Charging Up!");
         chargingUp = true;
         Vector3 pos = transform.position;
 
@@ -86,8 +86,8 @@ public abstract class Enemy : MonoBehaviour
             }
             yield return null;
         }
-        StartCoroutine(Attack());
         chargingUp = false;
+        StartCoroutine(nameof(Attack));
     }
 
     public void SetTarget(Transform target)
@@ -101,8 +101,9 @@ public abstract class Enemy : MonoBehaviour
     protected void EndAttack()
     {
         
-        // Debug.Log($"{name} Attacked!");
+        Debug.Log($"{name} Attacked!");
         canAttackTime = Time.time + attackInterval;
+        isAttacking = false;
         chargingUp = false;
         _aiPath.canMove = true;
         _aiPath.maxSpeed = moveSpeed;
@@ -121,6 +122,7 @@ public abstract class Enemy : MonoBehaviour
         isStunned = true;
         _aiPath.canMove = false;
         _aiPath.maxSpeed = 0;
+        StopAllCoroutines();
     }
     public void UnStun()
     {
