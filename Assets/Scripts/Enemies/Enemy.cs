@@ -103,6 +103,7 @@ public abstract class Enemy : MonoBehaviour
         
         // Debug.Log($"{name} Attacked!");
         canAttackTime = Time.time + attackInterval;
+        chargingUp = false;
         _aiPath.canMove = true;
         _aiPath.maxSpeed = moveSpeed;
     }

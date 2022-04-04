@@ -10,7 +10,10 @@ public class NextLevel : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         { 
             Debug.Log("Next Level");
-            nextLevelsStartRoom.Spawn(col.transform);
+            if(nextLevelsStartRoom)
+                nextLevelsStartRoom.Spawn(col.transform);
+            else
+                Debug.LogWarning($"Start Room not assined for {name}");
         }
     }
 }
