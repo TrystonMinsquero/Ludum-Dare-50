@@ -17,10 +17,10 @@ public abstract class Room : MonoBehaviour
     public void TurnOn(Transform target = null)
     {
         SetLightsActive(true);
-        CheckForRoomCompletion();
-        
         if (completed)
             return;
+        
+        CheckForRoomCompletion();
 
         foreach(Door door in doors)
             door.Close();
@@ -48,12 +48,14 @@ public abstract class Room : MonoBehaviour
 
     public void CompleteRoom()
     {
+        SFXManager.Play("Doors");
         foreach(Door door in doors)
             door.Open();
         SetLightsActive(true);
         
         completed = true;
         CompletedRoom.Invoke(this);
+        OnCompleteRoom();
     }
 
     protected abstract void OnCompleteRoom();
@@ -85,6 +87,7 @@ public abstract class Room : MonoBehaviour
             player.PickUpWeapon(LevelManager.weapon);
         EnteredRoom.Invoke(this);
         TurnOn(player.transform);
+        OnEnterRoom();
     }
 
     private void OnTriggerEnter2D(Collider2D col)

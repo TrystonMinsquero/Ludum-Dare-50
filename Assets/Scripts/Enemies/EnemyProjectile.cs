@@ -33,19 +33,15 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Wall"))
+        if (col.CompareTag("Wall"))
             Destroy(gameObject);
-        if (col.CompareTag("Player"))
+        if (col.TryGetComponent<Player>(out var player))
         {
-            if (TryGetComponent<Player>(out var player))
+            if (!player.GetComponent<PlayerMovement>().IsDashing())
             {
-                if (!player.GetComponent<PlayerMovement>().IsDashing())
-                {
-                    player.TakeDamage(_damage);
-                    Destroy(gameObject);
-                }
+                player.TakeDamage(_damage);
+                Destroy(gameObject);
             }
-            
         }
     }
 }

@@ -24,6 +24,7 @@ public class WeaponHolder : MonoBehaviour
     {
         if(weapon == null || this.weapon )
             return;
+        SFXManager.Play("PickUp");
         this.weapon = weapon;
         this.weapon.transform.position = transform.position + _weaponPosition;
     }

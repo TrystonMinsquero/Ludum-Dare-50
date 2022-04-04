@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
 
     public Sprite heldImage;
     public Sprite thrownImage;
+    public float offset = -45f;
 
     private bool isEmbedded;
     private bool isInMotion;
@@ -26,12 +27,13 @@ public class Weapon : MonoBehaviour
 
     public void SetRotation(Vector2 lookDir)
     {
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDir.y, lookDir.x) - 45);
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(lookDir.y, lookDir.x) + offset);
     }
 
     public void Throw(Vector2 direction)
     {
         Debug.Log("Throw weapon!");
+        SFXManager.Play("Throw");
         canPickUp = false;
         StartCoroutine(Throwing(direction));
     }

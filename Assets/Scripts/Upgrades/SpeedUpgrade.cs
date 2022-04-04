@@ -1,27 +1,12 @@
 ﻿using System;
-
-public enum SpeedUpgradeType
-{
-    ADD,
-    MULTIPLER
-}
-
 [Serializable]
 public class SpeedUpgrade : Upgrade
 {
-    public SpeedUpgradeType UpgradeType;
+    public ModiferType modiferType;
     public float value;
-    public void ApplyUpgrade()
+    public override void ApplyUpgrade()
     {
         PlayerMovement playerMovement = LevelManager.player.GetComponent<PlayerMovement>();
-        switch (UpgradeType)
-        {
-            case SpeedUpgradeType.ADD:
-                playerMovement.moveSpeed += value;
-                break;
-            case SpeedUpgradeType.MULTIPLER:
-                playerMovement.moveSpeed *= value;
-                break;
-        }
+        playerMovement.moveSpeed = ModiferHelper.ApplyModifer(playerMovement.moveSpeed, value, modiferType);
     }
 }
