@@ -50,6 +50,7 @@ public class StartRoom : Room
     public void Spawn(Transform player)
     {
         player.position = spawnPoint.position;
+        LevelManager.player.SetTime(timeForLevel);
         leftRoom = false;
     }
 }

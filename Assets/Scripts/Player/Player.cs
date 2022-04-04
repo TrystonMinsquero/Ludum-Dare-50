@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int startTime = 120;
-    public float TimeOfDeath { get; private set; }
+    public float TimeOfDeath { get; private set; } = 100;
 
     public float damageModifer = 1f;
     public float timeOnKill = 0f;
@@ -27,14 +27,9 @@ public class Player : MonoBehaviour
         TimeOfDeath = Time.time + time;
     }
 
-    private void Start()
-    {
-        TimeOfDeath = Time.time + startTime;
-    }
-
     public void Die()
     {
-        
+        GameOverUI.ShowScreen();
     }
 
     private void Update()

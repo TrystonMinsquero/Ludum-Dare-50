@@ -6,6 +6,6 @@ public class GoldRoom : Room
     
     protected override void OnCompleteRoom()
     {
-        throw new NotImplementedException();
+        LevelManager.player.AddTime(timeAdded);
     }
 }
