@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: goblin
   isMarked: 0
-  damageAmount: 5
+  damageAmount: 8
   attackInterval: 0.2
   chargeUpTime: 0.6
   canMoveWhileCharging: 0
