@@ -2,19 +2,11 @@
 [Serializable]
 public class SpeedUpgrade : Upgrade
 {
-    public ModiferType UpgradeType;
+    public ModiferType modiferType;
     public float value;
     public override void ApplyUpgrade()
     {
         PlayerMovement playerMovement = LevelManager.player.GetComponent<PlayerMovement>();
-        switch (UpgradeType)
-        {
-            case ModiferType.ADD:
-                playerMovement.moveSpeed += value;
-                break;
-            case ModiferType.MULTIPLER:
-                playerMovement.moveSpeed *= value;
-                break;
-        }
+        playerMovement.moveSpeed = ModiferHelper.ApplyModifer(playerMovement.moveSpeed, value, modiferType);
     }
 }

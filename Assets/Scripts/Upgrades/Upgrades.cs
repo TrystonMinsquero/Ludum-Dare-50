@@ -45,6 +45,7 @@ public class Upgrades : MonoBehaviour
             {
                 upgrade.ApplyUpgrade();
                 UpgradeApplied.Invoke(upgrade);
+                Debug.Log($"Applied {upgradeName}");
                 return;
             }
 

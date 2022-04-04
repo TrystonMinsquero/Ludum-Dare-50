@@ -44,26 +44,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SlowMark:
-    upgradeName: 
-    icon: {fileID: 0}
-    duration: 3
-    isActive: 0
+    upgradeName: Slow Mark
+    icon: {fileID: 21300000, guid: 0eaef8a5cdccb3b46b8bc85e13fb34ad, type: 3}
+    duration: 6
   StunMark:
-    upgradeName: 
-    icon: {fileID: 0}
-    duration: 3
-    isActive: 0
+    upgradeName: Stun Mark
+    icon: {fileID: 21300000, guid: 811b7056cd066294faf9d5cdd637846e, type: 3}
+    duration: 2
   SpeedUpgrade:
-    upgradeName: 
-    icon: {fileID: 0}
-    UpgradeType: 0
-    value: 0
+    upgradeName: Speed
+    icon: {fileID: 21300000, guid: fd3adcf3aab40ee4c9a8bd48d1f7b3ec, type: 3}
+    UpgradeType: 1
+    value: 1.5
   TimeOnKillUpgrade:
-    upgradeName: 
-    icon: {fileID: 0}
-    value: 0
+    upgradeName: Lifesteal
+    icon: {fileID: 21300000, guid: 177391ba67491dd4b815b117f914aff8, type: 3}
+    value: 1
   DamageResistUpgrade:
-    upgradeName: 
-    icon: {fileID: 0}
-    UpgradeType: 0
-    value: 0
+    upgradeName: Resist
+    icon: {fileID: 21300000, guid: 4807c72ee3856454c95b454b32bbcce3, type: 3}
+    UpgradeType: 1
+    value: 0.75

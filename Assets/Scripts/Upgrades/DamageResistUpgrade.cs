@@ -4,19 +4,11 @@ using UnityEngine;
 [Serializable]
 public class DamageResistUpgrade : Upgrade
 {
-    public ModiferType UpgradeType;
+    public ModiferType modiferType;
     [Range(0,1)]
     public float value;
     public override void ApplyUpgrade()
     {
-        switch (UpgradeType)
-        {
-            case ModiferType.ADD:
-                LevelManager.player.damageModifer += value;
-                break;
-            case ModiferType.MULTIPLER:
-                LevelManager.player.damageModifer *= value;
-                break;
-        }
+        LevelManager.player.damageModifer = ModiferHelper.ApplyModifer(LevelManager.player.damageModifer, value, modiferType);
     }
 }
