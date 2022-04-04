@@ -11,8 +11,6 @@ public class Door : MonoBehaviour
     private Behaviour[] _turnOffOnOpen;
     private TilemapRenderer _renderer;
     
-    
-
     public void Close()
     {
         foreach (var behaviour in _turnOffOnOpen)

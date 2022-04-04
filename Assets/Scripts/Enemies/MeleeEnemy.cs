@@ -8,6 +8,7 @@ public class MeleeEnemy : Enemy
     [Header("Melee")]
     public float attackRadius = .5f;
     public float attackRange = .5f;
+    public GameObject slamAnim;
 
     
     protected override void Update()
@@ -19,6 +20,8 @@ public class MeleeEnemy : Enemy
 
     protected override IEnumerator Attack()
     {
+        slamAnim.SetActive(true);
+        slamAnim.GetComponent<Animator>().Play(enemyName + "Smash");
         if (_setter.target != null)
         {
             isAttacking = true;
@@ -40,7 +43,7 @@ public class MeleeEnemy : Enemy
     private void OnDrawGizmosSelected()
     {
         Vector3 attackPoint;
-        if(_setter.target == null)
+        if(!_setter && _setter.target == null)
             attackPoint= ((transform.position + Vector3.right)).normalized * attackRange;
         else
             attackPoint = ((_setter.target.position - transform.position).normalized) * attackRange;

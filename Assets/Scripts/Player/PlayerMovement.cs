@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Dash()
     {
         // reset values
+        SFXManager.Play("Dash");
         _rb.drag = 0;
         isDashing = true;
         Vector3 startPos = transform.position;

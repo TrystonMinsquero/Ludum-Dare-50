@@ -5,10 +5,10 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class RedRoom : Room
 {
-   public Upgrade upgrade;
+   public string upgradeName;
 
    protected override void OnCompleteRoom()
    {
-      upgrade.ApplyUpgrade();
+      Upgrades.ApplyUpgrade(upgradeName);
    }
 }
