@@ -132,16 +132,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: goblin
   isMarked: 0
-  damageAmount: 5
-  attackInterval: 0.6
-  chargeUpTime: 1
+  damageAmount: 6
+  attackInterval: 0.4
+  chargeUpTime: 0.7
   canMoveWhileCharging: 0
   moveSpeedInit: 3
-  pushForce: 0.15
-  moveSpeed: 3
+  pushForce: 0.2
   isDying: 0
   _markedSR: {fileID: 6264662620217877909}
   projectile: {fileID: 4788393343071087539, guid: c0924551812b3b945b0db4a0c4ec8495, type: 3}
   attackRange: 6
-  projectTileSpeed: 20
+  projectTileSpeed: 12
   projectTileLaunchPoint: {fileID: 7201900552271244629}
