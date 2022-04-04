@@ -132,7 +132,7 @@ MonoBehaviour:
   attackInterval: 0.2
   chargeUpTime: 0.6
   canMoveWhileCharging: 0
-  moveSpeedInit: 3
+  moveSpeedInit: 2
   pushForce: 0.15
   isDying: 0
   _markedSR: {fileID: 6264662620217877909}
