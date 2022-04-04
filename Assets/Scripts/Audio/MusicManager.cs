@@ -14,6 +14,12 @@ public class MusicManager : MonoBehaviour
     public string startingSongName;
 
     /// <summary>
+    ///   <para>makes all added songs to this volume, doesn't apply if less than 0.</para>
+    /// </summary>
+    [Range(-.05f, 1)]
+    public float globalVolume = 1;
+
+    /// <summary>
     ///   <para>only change this in the prefab so it updates in all scenes.</para>
     /// </summary>
     public Song[] songs;
@@ -22,12 +28,13 @@ public class MusicManager : MonoBehaviour
 
     public static Song currentSong;
 
+
     void Awake()
     {
         if (instance != null)
         {
             // Add songs not in current manager
-            AddNewSongs(songs);
+            AddNewSongs(songs, instance.globalVolume);
             
             if (startingSongName != currentSong.name)
             {
@@ -39,7 +46,7 @@ public class MusicManager : MonoBehaviour
         else
         {
             instance = this;
-            AddNewSongs(songs);
+            AddNewSongs(songs, globalVolume);
         
             if(currentSong == null || currentSong == new Song())
                 Play(startingSongName);
@@ -50,15 +57,14 @@ public class MusicManager : MonoBehaviour
     }
 
     // Adds new songs the the current instance
-    private static void AddNewSongs(Song[] songs)
+    private static void AddNewSongs(Song[] songs, float globalVolume = -1)
     {
         foreach (var newSong in songs)
         {
             if (_songs.Exists(song => newSong.name == song.name)) continue;
             newSong.source = instance.gameObject.AddComponent<AudioSource>();
             newSong.source.clip = newSong.clip;
-
-            newSong.source.volume = newSong.volume;
+            newSong.source.volume = globalVolume < 0 ? newSong.volume : globalVolume;
             newSong.source.pitch = newSong.pitch;
             newSong.source.loop = newSong.loop;
             _songs.Add(newSong);

@@ -87,7 +87,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7341570703352896748, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
       propertyPath: m_Name
-      value: Ranged Enemy
+      value: Ranged Enemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730028793823294965, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: radius
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730028793823294965, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
+      propertyPath: autoRepath.sensitivity
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c07339fde5dc748bb46353a44174af, type: 3}
@@ -125,12 +133,10 @@ MonoBehaviour:
   chargeUpTime: 1
   canMoveWhileCharging: 0
   moveSpeedInit: 3
-  activeMarks: []
   pushForce: 0.15
-  moveSpeed: 3
   isDying: 0
   _markedSR: {fileID: 6264662620217877909}
   projectile: {fileID: 4788393343071087539, guid: c0924551812b3b945b0db4a0c4ec8495, type: 3}
-  attackRange: 6
-  projectTileSpeed: 20
+  attackRange: 3
+  projectTileSpeed: 7
   projectTileLaunchPoint: {fileID: 7201900552271244629}

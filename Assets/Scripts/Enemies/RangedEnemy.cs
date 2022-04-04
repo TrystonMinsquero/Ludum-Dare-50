@@ -17,7 +17,7 @@ public class RangedEnemy : Enemy
         if (!_setter.target)
             return;
         float targetDistance = (_setter.target.position - transform.position).magnitude;
-        if ( targetDistance <= attackRange && !chargingUp && canAttackTime <= Time.time && _setter.target != null)
+        if ( targetDistance <= attackRange && !chargingUp && !isAttacking && canAttackTime <= Time.time && _setter.target != null)
             StartCoroutine(ChargeUpThenAttack(chargeUpTime));
     }
 
@@ -31,7 +31,6 @@ public class RangedEnemy : Enemy
             projectile.SetRotation(direction);
             projectile.Throw(direction, this);
         }
-        isAttacking = false;
         yield return null;
         EndAttack();
     }

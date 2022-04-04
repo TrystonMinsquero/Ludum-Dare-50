@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Upgrades : MonoBehaviour
@@ -20,6 +21,7 @@ public class Upgrades : MonoBehaviour
     
     public static event Action<Upgrade> UpgradeApplied = delegate(Upgrade upgrade) {  };
     private static Upgrade[] _upgrades;
+
 
     private void Awake()
     {
@@ -47,6 +49,12 @@ public class Upgrades : MonoBehaviour
         ApplyUpgrade("speed");
         ApplyUpgrade("stun mark");
         ApplyUpgrade("slow mark");
+    }
+
+    public static void ApplyUpgrade(Upgrade upgrade)
+    {
+        upgrade.ApplyUpgrade();
+        UpgradeApplied.Invoke(upgrade);
     }
 
     public static void ApplyUpgrade(string upgradeName)

@@ -9,8 +9,21 @@ public class StartRoom : Room
     public Transform spawnPoint;
     public bool absoluteStart;
     public TutorialGuide guide;
+    public string songName;
+    public float timeForLevel = 120;
 
     private bool leftRoom;
+    public static event Action<StartRoom> StartRoomEntered = delegate(StartRoom room) {  };
+    public static StartRoom AbsoluteStartRoom;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (absoluteStart)
+        {
+            AbsoluteStartRoom = this;
+        }
+    }
 
     protected override void OnCompleteRoom()
     {
@@ -25,16 +38,23 @@ public class StartRoom : Room
         // Debug.Log("Entered start room");
         if(guide)
             guide.Speak();
+        if (!leftRoom)
+        {
+            StartRoomEntered.Invoke(this);
+            MusicManager.Play(songName);
+        }
     }
 
     private void Update()
     {
         if (absoluteStart && !leftRoom)
-            LevelManager.player.SetTime(LevelManager.player.startTime);
+            LevelManager.player.SetTime(timeForLevel);
     }
 
     public void Spawn(Transform player)
     {
         player.position = spawnPoint.position;
+        LevelManager.player.SetTime(timeForLevel);
+        leftRoom = false;
     }
 }

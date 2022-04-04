@@ -168,15 +168,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: ogre
   isMarked: 0
-  damageAmount: 8
-  attackInterval: 0.1
-  chargeUpTime: 0.2
+  damageAmount: 10
+  attackInterval: 0.5
+  chargeUpTime: 0.5
   canMoveWhileCharging: 0
-  moveSpeedInit: 7
+  moveSpeedInit: 6
   pushForce: 0.2
-  moveSpeed: 3
   isDying: 0
   _markedSR: {fileID: 639740012827721861}
   attackRadius: 0.5
-  attackRange: 0.5
+  attackRange: 1
   slamAnim: {fileID: 4219996564449602477}
