@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingSongName: 
+  globalVolume: 1
   songs:
   - name: Level 1
     clip: {fileID: 8300000, guid: 07954116511ffd840b2f78d00f1e79f7, type: 3}
@@ -77,6 +78,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Victory
     clip: {fileID: 8300000, guid: 11c588f35d7145d46bb8757529365fb5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Menu
+    clip: {fileID: 8300000, guid: c912006e5e43b7d4ebda9b4e77715851, type: 3}
     volume: 1
     pitch: 1
     loop: 1
