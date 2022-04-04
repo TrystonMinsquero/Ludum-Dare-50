@@ -8,8 +8,7 @@ public class NextLevel : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Player"))
-        {
-            
+        { 
             Debug.Log("Next Level");
             col.transform.position = nextLevelCoordinates.position;
         }
