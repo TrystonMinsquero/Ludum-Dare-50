@@ -64,7 +64,7 @@ public abstract class Room : MonoBehaviour
     {
     }
 
-    public void Awake()
+    protected virtual void Awake()
     {
         _lights = GetComponentsInChildren<Light2D>();
         foreach (Enemy enemy in enemies)
