@@ -169,12 +169,12 @@ MonoBehaviour:
   enemyName: ogre
   isMarked: 0
   damageAmount: 8
-  attackInterval: 0.1
-  chargeUpTime: 0.2
+  attackInterval: 0.5
+  chargeUpTime: 0.5
   canMoveWhileCharging: 0
-  moveSpeedInit: 7
+  moveSpeedInit: 6
   pushForce: 0.2
-  moveSpeed: 3
+  moveSpeed: 7
   isDying: 0
   _markedSR: {fileID: 639740012827721861}
   attackRadius: 0.5
