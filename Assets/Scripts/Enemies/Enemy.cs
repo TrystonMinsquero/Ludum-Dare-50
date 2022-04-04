@@ -111,6 +111,8 @@ public abstract class Enemy : MonoBehaviour
     {
         moveSpeed = speed;
         _aiPath.maxSpeed = speed;
+        _anim.speed = speed / moveSpeed;
+
     }
 
     public void Stun()

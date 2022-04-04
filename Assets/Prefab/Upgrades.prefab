@@ -47,6 +47,8 @@ MonoBehaviour:
     upgradeName: Slow Mark
     icon: {fileID: 21300000, guid: 0eaef8a5cdccb3b46b8bc85e13fb34ad, type: 3}
     duration: 6
+    modiferType: 0
+    value: 0.5
   StunMark:
     upgradeName: Stun Mark
     icon: {fileID: 21300000, guid: 811b7056cd066294faf9d5cdd637846e, type: 3}
@@ -54,7 +56,7 @@ MonoBehaviour:
   SpeedUpgrade:
     upgradeName: Speed
     icon: {fileID: 21300000, guid: fd3adcf3aab40ee4c9a8bd48d1f7b3ec, type: 3}
-    UpgradeType: 1
+    modiferType: 0
     value: 1.5
   TimeOnKillUpgrade:
     upgradeName: Lifesteal
@@ -63,5 +65,5 @@ MonoBehaviour:
   DamageResistUpgrade:
     upgradeName: Resist
     icon: {fileID: 21300000, guid: 4807c72ee3856454c95b454b32bbcce3, type: 3}
-    UpgradeType: 1
+    modiferType: 0
     value: 0.75
