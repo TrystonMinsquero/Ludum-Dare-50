@@ -2434,11 +2434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4748293522208193716, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 278.8
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4748293522208193716, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4748293522208193716, guid: 92f632cb04f6fc24e9c96efa286e14d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12185,7 +12185,7 @@ MonoBehaviour:
   completed: 0
   timeAdded: 10
   spawnPoint: {fileID: 1097607565}
-  absoluteStart: 0
+  absoluteStart: 1
   guide: {fileID: 1438830557}
   songName: Level 4
   timeForLevel: 60
@@ -15031,7 +15031,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: fd3adcf3aab40ee4c9a8bd48d1f7b3ec, type: 3}
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: StunMark.duration
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: SpeedUpgrade.value
@@ -15051,7 +15051,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 177391ba67491dd4b815b117f914aff8, type: 3}
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: TimeOnKillUpgrade.value
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: DamageResistUpgrade.icon
@@ -15067,7 +15067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: DamageResistUpgrade.value
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6084870350994374141, guid: de04b441ecde2cb4c9e2ba8e0e0c0d73, type: 3}
       propertyPath: SlowMark.upgradeDescription
@@ -15247,7 +15247,7 @@ MonoBehaviour:
   - {fileID: 413952216}
   - {fileID: 1497959044}
   completed: 0
-  upgradeName: Stun Mark
+  upgradeName: Speed
 --- !u!1001 &1043317166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97719,6 +97719,10 @@ PrefabInstance:
       value: Level Transitioner (3)
       objectReference: {fileID: 0}
     - target: {fileID: 277418705099597550, guid: 6fd5757d824abc94fad897a78f6ee346, type: 3}
+      propertyPath: finishGame
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 277418705099597550, guid: 6fd5757d824abc94fad897a78f6ee346, type: 3}
       propertyPath: nextLevelsStartRoom
       value: 
       objectReference: {fileID: 702899746}
@@ -101466,7 +101470,7 @@ MonoBehaviour:
   completed: 0
   timeAdded: 0
   spawnPoint: {fileID: 967677055}
-  absoluteStart: 1
+  absoluteStart: 0
   guide: {fileID: 227429519}
   songName: Level 1
   timeForLevel: 60
