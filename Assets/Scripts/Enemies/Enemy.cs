@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 using Pathfinding;
@@ -53,12 +54,15 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Update()
     {
         SetAnimation();
-        if(isDying || isStunned)
+        if(isDying)
             return;
         
         if (embeddedWeapon)
             embeddedWeapon.position = embeddedWeaponOffset + transform.position;
-        _markedSR.enabled = activeMarks.Count > 0;
+        _markedSR.enabled = embeddedWeapon;
+
+        if (isStunned)
+            return;
         
         //Soft push
         var collions = Physics2D.OverlapBoxAll(transform.position, _bc.size, 0);
@@ -112,26 +116,32 @@ public abstract class Enemy : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
+        _aiPath.canMove = speed > 0;
         moveSpeed = speed;
         _aiPath.maxSpeed = speed;
-        _anim.speed = speed / moveSpeed;
 
     }
 
     public void Stun()
     {
         isStunned = true;
-        _aiPath.canMove = false;
-        _aiPath.maxSpeed = 0;
-        StopCoroutine(nameof(Attack));
-        StopCoroutine(nameof(ChargeUpThenAttack));
-        EndAttack();
+        SetSpeed(0);
+        StopCoroutine("Attack");
+        if (chargingUp)
+        {
+            StopCoroutine("ChargeUpThenAttack");
+            canAttackTime = Time.time + chargeUpTime;
+        }
+        else if (isAttacking)
+        {
+            StopCoroutine("Attack");
+            EndAttack();
+        }
     }
     public void UnStun()
     {
         isStunned = false;
-        _aiPath.canMove = true;
-        _aiPath.maxSpeed = moveSpeed;
+        SetSpeed(moveSpeedInit);
     }
 
     public void HitByWeapon(Weapon weapon)
@@ -145,20 +155,23 @@ public abstract class Enemy : MonoBehaviour
     public void ReceiveMarks(List<Mark> marks)
     {
         foreach (var mark in marks)
-        {
-            ReceiveMark(mark);
-        }
+            if(mark.upgradeName.ToLower() == "slow mark".ToLower())
+                ReceiveMark(mark);
+        foreach (var mark in marks)
+            if(mark.upgradeName.ToLower() != "slow mark".ToLower())
+                ReceiveMark(mark);
     }
 
     private void Die()
     {
         // play death anim
         EnemyDied.Invoke(this);
-        _aiPath.canMove = false;
-        _aiPath.maxSpeed = 0;
+        SetSpeed(0);
         canAttackTime = Mathf.Infinity;
+        embeddedWeapon = null;
         _bc.enabled = false;
         _markedSR.enabled = false;
+        isDying = true;
         StopAllCoroutines();
         StartCoroutine(PlayDeathAnim(1f));
     }
@@ -169,6 +182,7 @@ public abstract class Enemy : MonoBehaviour
         Vector3 pos = transform.position;
         isDying = true;
         float endTime = Time.time + duration;
+        _anim.Play(enemyName + "Death");
         while (Time.time < endTime)
         {
             transform.position = pos;
@@ -181,6 +195,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void ReceiveMark(Mark mark)
     {
+        Debug.Log($"{name} received {mark.upgradeName}");
         activeMarks.Add(mark);
         StartCoroutine(mark.ApplyMark(this));
     }
@@ -209,7 +224,6 @@ public abstract class Enemy : MonoBehaviour
             {
                 player.GetComponent<WeaponHolder>().PickUpWeapon(embeddedWeapon.GetComponent<Weapon>());
                 player.AddTime(player.timeOnKill);
-                embeddedWeapon = null;
                 Die();
             }
         }
@@ -217,6 +231,8 @@ public abstract class Enemy : MonoBehaviour
     }
 
     protected abstract void SetAnimation();
+
+    public bool IsStuned() => isStunned;
 
 
 }

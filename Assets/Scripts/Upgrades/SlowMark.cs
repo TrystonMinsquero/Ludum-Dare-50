@@ -10,12 +10,20 @@ public class SlowMark : Mark
     
     public override IEnumerator ApplyMark(Enemy enemy)
     {
-        float prevSpeed = enemy.moveSpeedInit;
         float prevChargeTime = enemy.chargeUpTime;
-        enemy.SetSpeed(ModiferHelper.ApplyModifer(prevSpeed, value, modiferType));
+        enemy.SetSpeed(ModiferHelper.ApplyModifer(enemy.moveSpeedInit, value, modiferType));
         enemy.chargeUpTime = (ModiferHelper.ApplyModifer(prevChargeTime, value, modiferType));
-        yield return new WaitForSeconds(duration);
-        enemy.SetSpeed(prevSpeed);
+        float endTime = Time.time + duration;
+        while (Time.time <= endTime)
+        {
+            if (!enemy.IsStuned())
+            {
+                enemy.SetSpeed(ModiferHelper.ApplyModifer(enemy.moveSpeedInit, value, modiferType));
+                enemy.chargeUpTime = (ModiferHelper.ApplyModifer(prevChargeTime, value, modiferType));
+            }
+            yield return null;
+        }
+        enemy.SetSpeed(enemy.moveSpeedInit);
         enemy.chargeUpTime = prevChargeTime;
         IsActive = false;
     }

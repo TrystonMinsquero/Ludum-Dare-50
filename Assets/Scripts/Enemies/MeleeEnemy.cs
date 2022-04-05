@@ -69,6 +69,8 @@ public class MeleeEnemy : Enemy
         string stateName = enemyName;
         if (isDying)
             stateName += "Death";
+        else if (isStunned)
+            stateName += "Stun";
         else if (chargingUp)
             stateName += "Charge";
         else if (isAttacking)
