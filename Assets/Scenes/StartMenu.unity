@@ -1148,6 +1148,10 @@ PrefabInstance:
       value: MusicManager
       objectReference: {fileID: 0}
     - target: {fileID: 479394042904144370, guid: b157f9cacc116c947ab499f1cefeb9e7, type: 3}
+      propertyPath: globalVolume
+      value: 0.083
+      objectReference: {fileID: 0}
+    - target: {fileID: 479394042904144370, guid: b157f9cacc116c947ab499f1cefeb9e7, type: 3}
       propertyPath: startingSongName
       value: Menu
       objectReference: {fileID: 0}

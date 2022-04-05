@@ -2420,7 +2420,7 @@ MonoBehaviour:
   absoluteStart: 0
   guide: {fileID: 1283883997}
   songName: Level 2
-  timeForLevel: 60
+  timeForLevel: 60000
 --- !u!1001 &92389247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12185,10 +12185,10 @@ MonoBehaviour:
   completed: 0
   timeAdded: 10
   spawnPoint: {fileID: 1097607565}
-  absoluteStart: 1
+  absoluteStart: 0
   guide: {fileID: 1438830557}
   songName: Level 4
-  timeForLevel: 60
+  timeForLevel: 60000
 --- !u!114 &704088429 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8173218690299721293, guid: 9c67f386e1e5f2e43bfe8a98215c6324, type: 3}
@@ -13381,7 +13381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479394042904144370, guid: b157f9cacc116c947ab499f1cefeb9e7, type: 3}
       propertyPath: globalVolume
-      value: 0.06
+      value: 0.048
       objectReference: {fileID: 0}
     - target: {fileID: 479394042904144371, guid: b157f9cacc116c947ab499f1cefeb9e7, type: 3}
       propertyPath: m_RootOrder
@@ -45039,7 +45039,7 @@ MonoBehaviour:
   absoluteStart: 0
   guide: {fileID: 1465886762}
   songName: Level 3
-  timeForLevel: 60
+  timeForLevel: 60000
 --- !u!114 &1233702297 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4001585034439581288, guid: 997523e6932efa94385dd937438699b8, type: 3}
@@ -101470,10 +101470,10 @@ MonoBehaviour:
   completed: 0
   timeAdded: 0
   spawnPoint: {fileID: 967677055}
-  absoluteStart: 0
+  absoluteStart: 1
   guide: {fileID: 227429519}
   songName: Level 1
-  timeForLevel: 60
+  timeForLevel: 60000
 --- !u!1001 &1630502494
 PrefabInstance:
   m_ObjectHideFlags: 0
