@@ -26,7 +26,7 @@ public class Upgrades : MonoBehaviour
     private void Awake()
     {
         Populate();
-        StartCoroutine(Test(2));
+        // StartCoroutine(Test(2));
     }
 
     private void Populate()
