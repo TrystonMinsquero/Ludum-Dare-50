@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
 
 public class Weapon : MonoBehaviour
 {
@@ -35,6 +38,14 @@ public class Weapon : MonoBehaviour
         Debug.Log("Throw weapon!");
         SFXManager.Play("Throw");
         canPickUp = false;
+        ContactFilter2D filter = new ContactFilter2D();
+
+        // ahhhh
+        // Vector2 pos = transform.position;
+        // var collisions = Physics2D.OverlapBoxAll(pos, GetComponent<SpriteRenderer>().size);
+        //     // pos,
+        //     // GetComponent<SpriteRenderer>().size);
+
         StartCoroutine(Throwing(direction));
     }
 
@@ -88,6 +99,33 @@ public class Weapon : MonoBehaviour
             isEmbedded = true;
         }
     }
+    
+    private void OnTriggerStay2D(Collider2D other)
+        {
+            if(canPickUp && other.CompareTag("Player"))
+            {
+                Debug.Log("Pick up");
+                if (other.TryGetComponent<WeaponHolder>(out var player))
+                    player.PickUpWeapon(this);
+                else
+                    Debug.LogWarning("WTF");
+            }
+            
+            if(!isInMotion)
+                return;
+            
+            if (other.CompareTag("Wall"))
+            {
+                canPickUp = true;
+                StopThrow();
+            }
+            if (other.TryGetComponent<Enemy>(out var enemy))
+            {
+                StopThrow();
+                enemy.HitByWeapon(this);
+                isEmbedded = true;
+            }
+        }
 
     public bool CanPickUp() => canPickUp;
     public bool IsEmbedded() => isEmbedded;

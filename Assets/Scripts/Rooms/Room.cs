@@ -98,6 +98,12 @@ public abstract class Room : MonoBehaviour
         }
     }
 
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     if(other.TryGetComponent<Weapon>(out var weapon))
+    //         LevelManager.player.GetComponent<WeaponHolder>().PickUpWeapon(weapon);
+    // }
+
     public void SetLightsActive(bool enabled)
     {
         foreach (Light2D light in _lights)
